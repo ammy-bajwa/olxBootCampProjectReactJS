@@ -48,7 +48,7 @@ class Header extends Component {
     axios({
       method: 'post',
       url: catogary == 'all' ?
-        'http://localhost:3000/search/all' : 'http://localhost:3000/search/catogary',
+        '/search/all' : '/search/catogary',
       data: {
         searchKeywork, catogary
       }

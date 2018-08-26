@@ -40,7 +40,7 @@ class Signup extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:3000/user/signup',
+            url: '/user/signup',
             data: {
                 name, lastName, email, password,
                 contact, city, createdAt

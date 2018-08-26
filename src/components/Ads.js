@@ -12,7 +12,7 @@ class Ads extends Component {
         let componentThis = this;
         axios({
             method: 'get',
-            url: `http://localhost:3000${this.props.location.pathname}`,
+            url: `${this.props.location.pathname}`,
         })
             .then(function (response) {
                 componentThis.setState({

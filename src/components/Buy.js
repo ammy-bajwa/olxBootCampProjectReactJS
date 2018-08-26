@@ -17,7 +17,7 @@ class Buy extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: `http://localhost:3000/ad/adauthor`,
+            url: `/ad/adauthor`,
             data: {
                 email
             }

@@ -54,7 +54,7 @@ class Login extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:3000/user/signin',
+            url: '/user/signin',
             data: {
                 email, password
             }

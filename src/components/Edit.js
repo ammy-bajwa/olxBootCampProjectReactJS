@@ -11,7 +11,7 @@ class Edit extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: `http://localhost:3000/ad/edit`,
+            url: `/ad/edit`,
             data: {
                 ad
             }

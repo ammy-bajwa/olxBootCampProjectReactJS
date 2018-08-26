@@ -80,7 +80,7 @@ class Postad extends Component {
                 // Send a POST request
                 axios({
                     method: 'post',
-                    url: 'http://localhost:3000/ad/add',
+                    url: '/ad/add',
                     data: {
                         adTitle, itemCondition, itemPic, price, city, itemDetails,
                         catogary, subCatogary, createdAt, user

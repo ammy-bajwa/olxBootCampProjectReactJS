@@ -36,7 +36,7 @@ class User extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:3000/ad/remove',
+            url: '/ad/remove',
             data: {
                 id
             }
@@ -61,7 +61,7 @@ class User extends Component {
         let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:3000/user/ads',
+            url: '/user/ads',
             data: {
                 email
             }
