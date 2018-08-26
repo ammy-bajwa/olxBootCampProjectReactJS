@@ -1,0 +1,20 @@
+.card{
+    margin: 1rem 2rem !important;
+    transition: .5s;
+    text-align: center;
+    border:none;
+}
+.card:hover h5{
+    color: white;
+}
+.card:hover{
+    background-color: #414141;
+    color: white;
+    /* font-size: 1.5rem; */
+}
+.homeCard {
+    width: 65%; 
+}
+.homeCardLast {
+    width: 85% !important; 
+}

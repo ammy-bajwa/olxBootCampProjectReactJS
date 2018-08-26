@@ -1,0 +1,20 @@
+@media screen and (max-width: 600px) {
+   #searchBtn{
+       margin: 1rem 0rem 0rem 1rem !important;
+   }
+   #searchSelect{
+       margin: 10px 0 0 0 !important;
+   }
+   .ml-3, .mx-3 {
+    margin-left: 0rem!important;
+}
+   .row{
+    margin: 0px !important;
+  }
+}
+.navbar-brand a{
+    color: white !important;
+}
+.navbar-nav {
+    margin-bottom: 7px !important;
+}
