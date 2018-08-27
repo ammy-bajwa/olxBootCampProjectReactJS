@@ -7,7 +7,7 @@ class Vehicles extends Component {
         dataArray: [
             {
                 name: 'Cars',
-                image: './images/car.png',
+                image: './images/car.svg',
                 link:'/vehicles/cars'
             },
             {

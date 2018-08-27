@@ -31,7 +31,7 @@ class Home extends Component {
                     </div>
                     <div className="card">
                         <div className='row h-100 justify-content-center align-items-center'>
-                            <img className="card-img-top homeCard" src="./images/car.png" alt="Card cap" />
+                            <img className="card-img-top homeCard" src="./images/car.svg" alt="Card cap" />
                         </div>
                         <div className="card-body">
                             <Link to='/vehicles'>
@@ -44,7 +44,7 @@ class Home extends Component {
                 <div className="card-deck">
                     <div className="card">
                         <div className='row h-100 justify-content-center align-items-center'>
-                            <img className="card-img-top homeCard" src="./images/bike.png" alt="Card cap" />
+                            <img className="card-img-top homeCard" src="./images/bike.svg" alt="Card cap" />
                         </div>
                         <div className="card-body">
                             <Link to='/bikes'>
@@ -79,7 +79,7 @@ class Home extends Component {
                 <div className="card-deck">
                     <div className="card">
                         <div className='row h-100 justify-content-center align-items-center'>
-                            <img className="card-img-top homeCard" src="./images/jobs.svg" alt="Card cap" />
+                            <img className="card-img-top homeCard" src="./images/businessman.svg" alt="Card cap" />
                         </div>
                         <div className="card-body">
                             <Link to='/jobs'>
@@ -175,3 +175,16 @@ class Home extends Component {
 }
 
 export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+

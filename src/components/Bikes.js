@@ -7,7 +7,7 @@ class Bikes extends Component {
         dataArray: [
             {
                 name: 'Motorcycles',
-                image: './images/bike.png',
+                image: './images/bike.svg',
                 link:'/bikes/motorcycle'
             },
             {
