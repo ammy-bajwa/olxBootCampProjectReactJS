@@ -6,11 +6,11 @@ class Buy extends Component {
     state = {
         ad: {}
     }
-    offlineHandler = () =>{
+    offlineHandler = () => {
         let adsArr = JSON.parse(localStorage.getItem('offlineAds'));
         let ad = this.state.ad;
         adsArr.push(ad);
-        localStorage.setItem('offlineAds',JSON.stringify(adsArr));
+        localStorage.setItem('offlineAds', JSON.stringify(adsArr));
     }
     getAdAuthor = (email) => {
         console.log(email);
@@ -23,15 +23,18 @@ class Buy extends Component {
             }
         })
             .then(function (response) {
-                self.setState((prevState)=>{
-                    return {
-                        ad:{
-                            ...prevState.ad,
-                            user: response.data.name,
-                            contact:response.data.contact
+                if (response.data.name) {
+                    self.setState((prevState) => {
+                        return {
+                            ad: {
+                                ...prevState.ad,
+                                user: response.data.name,
+                                contact: response.data.contact
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
                 console.log(response);
             })
             .catch(function (error) {
@@ -57,7 +60,7 @@ class Buy extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <Header  history={this.props.history} />
+                <Header history={this.props.history} />
                 <div className="mb-3">
                     <div className='container-fluid row h-100 justify-content-center align-items-center'>
                         <img className="card-img-top" src={this.state.ad.itemPic} alt="Card cap" />
