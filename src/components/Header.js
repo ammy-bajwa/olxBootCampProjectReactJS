@@ -73,8 +73,8 @@ class Header extends Component {
           <ToastContainer />
         </div>
         <nav className="navbar navbar-expand-lg navbar-light  bg-light ">
-          <h2 className="navbar-brand text-primary">
-            <Link to='/'><span className='ml-3'>OLX Pakistan</span></Link>
+          <h2 className="navbar-brand">
+            <Link to='/'><span className='ml-3' id='brandText'>OLX Pakistan</span></Link>
           </h2>
           <div>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,6 +124,9 @@ class Header extends Component {
               <li className={this.props.visible ? "nav-item" : 'd-none'}>
                 <Link className="nav-link" to={`${this.props.postAddress}/postad`}>Post Ad</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to='/offlineads'>Offline Ads</Link>
+              </li>
             </ul>
             <form className="form-inline my-2 my-lg-0" onSubmit={this.searchHandler}>
               <input className="form-control mr-sm-2" type="search"
@@ -147,7 +150,7 @@ class Header extends Component {
                   <option value='kids'>Kids</option>
                 </select>
               </div>
-              <button className="btn btn-outline-secondary my-sm-0 mr-2" type="submit" id='searchBtn'>Search</button>
+              <button className="btn btn-outline-primary my-sm-0 mr-2" type="submit" id='searchBtn'>Search</button>
             </form>
           </div>
         </nav>

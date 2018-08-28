@@ -9,27 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 class User extends Component {
     state = {
         dataArray: [],
-        offlineAds: []
-    }
-    success = () => {
-        toast.success("Operation Successfully Completed!", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000
-        });
-
-    }
-    offlineDeleteHandler = (ad) => {
-        let offlineAds = JSON.parse(localStorage.getItem('offlineAds'));
-        let id = ad._id
-        offlineAds = offlineAds.filter((item) => item._id !== id);
-        localStorage.setItem('offlineAds', JSON.stringify(offlineAds))
-        this.setState((prevState) => {
-            return {
-                ...prevState,
-                offlineAds
-            }
-        })
-        this.success();
     }
     deleteHandler = (ad) => {
         let id = ad._id;
@@ -79,13 +58,7 @@ class User extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-        let offlineAds = JSON.parse(localStorage.getItem('offlineAds'));
-        this.setState((prevState) => {
-            return {
-                ...prevState,
-                offlineAds
-            }
-        })
+        
     }
     render() {
         return (
@@ -124,37 +97,7 @@ class User extends Component {
                         })
                     }
                 </div>
-                <h1 className='text-center m-5'>All Offline Ads</h1>
-                <div className="container-fluid row h-100 justify-content-center align-items-center center-block">
-                    {
-                        this.state.offlineAds.length === 0 ? 'No Ad' : this.state.offlineAds.map((Obj, i) => {
-                            return <div className="card bodyCard d-inline-flex" key={i}>
-                                <div className='row h-100 justify-content-center align-items-center'>
-                                    <img className="card-img-top bodyCardImg mt-3" src={Obj.itemPic} alt="Card cap" />
-                                </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">{Obj.adTitle}</h5>
-                                    <h6 className="card-subtitle mb-2 text-muted ">Posted Time{Obj.createdAt}</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Condition{Obj.itemCondition} By 10</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Price Is {Obj.price}</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Posted By{Obj.user}</h6><hr />
-                                    <p className="card-text">Details : {Obj.itemDetails} </p>
-                                    <div className='container-fluid row h-100 justify-content-center align-items-center'>
-                                        <Link to={{
-                                            pathname: `/${Obj.catogary}/${Obj.subCatogary}/ads/buy`,
-                                            name: `${JSON.stringify(Obj)}`,
-                                            state: { fromDashboard: true }
-                                        }}>
-                                            <button className='btn btn-dark'>Details</button>
-                                        </Link>
-                                        <button className='btn btn-danger ml-3' onClick={() => this.offlineDeleteHandler(Obj)}>Delete</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        })
-                    }
-                </div>
+                
             </div>
         );
     }
