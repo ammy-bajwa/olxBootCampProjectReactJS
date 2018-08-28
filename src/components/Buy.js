@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 class Buy extends Component {
     state = {
-        ad: {}
+        ad: {},
+        btnVisibility: true
     }
     error = () => {
         toast.error('Already Saved', {
@@ -65,6 +68,7 @@ class Buy extends Component {
                             ad: {
                                 ...prevState.ad,
                                 user: response.data.name,
+                                userEmail: response.data.email,
                                 contact: response.data.contact
                             }
                         }
@@ -91,7 +95,16 @@ class Buy extends Component {
         this.setState({
             ad
         })
-
+        if (localStorage.getItem('sendMessage')) {
+            this.setState({
+                btnVisibility:false
+            }) ;
+        }
+    }
+    componentWillUnmount(){
+        if(localStorage.getItem('sendMessage')){
+            localStorage.removeItem('sendMessage');
+        }
     }
     render() {
         return (
@@ -112,7 +125,14 @@ class Buy extends Component {
                                 <p className="card-text"><b>Ad Status</b> <span className='float-right'>{this.state.ad.status}</span></p><hr />
                                 <p className="card-text"><b>Contact</b> <span className='float-right'><a href={`tel:${this.state.ad.contact}`}>{this.state.ad.contact}</a></span></p><hr />
                                 <p className="card-text"><small className="text-muted">Posted Time Is <span className='float-right'>{this.state.ad.createdAt}</span></small></p><hr />
-                                <button className="btn btn-outline-secondary" onClick={this.offlineHandler}>Save Ad Offine</button>
+                                <button className="btn btn-outline-primary" onClick={this.offlineHandler}>Save Ad Offine</button>
+                                {this.state.btnVisibility ? <Link to={{
+                                    pathname: `/sendmessage`,
+                                    name: `${JSON.stringify(this.state.ad)}`,
+                                    state: { fromDashboard: true }
+                                }}>
+                                    <button className="btn btn-outline-primary ml-3">Send Message</button>
+                                </Link> : ''}
                             </div>
                         </div>
                     </div>

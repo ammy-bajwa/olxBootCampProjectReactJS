@@ -58,7 +58,7 @@ class User extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-        
+        localStorage.setItem('sendMessage','Hi');
     }
     render() {
         return (

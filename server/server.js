@@ -31,9 +31,9 @@ const User = require('./routes/user');
 
 app.use(flash());
 
-// mongoose.connect("mongodb://localhost:27017/olx-clone");
+mongoose.connect("mongodb://localhost:27017/olx-clone");
 
-mongoose.connect("mongodb://amirali:123ABCd@ds153890.mlab.com:53890/olx-clone");
+// mongoose.connect("mongodb://amirali:123ABCd@ds153890.mlab.com:53890/olx-clone");
 
 
 mongoose.Promise = global.Promise;

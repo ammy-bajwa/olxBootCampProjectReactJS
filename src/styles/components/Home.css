@@ -3,6 +3,7 @@
     transition: .5s;
     text-align: center;
     border:none;
+    padding: 10px;
 }
 .card:hover h5{
     color: white;

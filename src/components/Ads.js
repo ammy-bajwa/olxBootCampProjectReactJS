@@ -53,10 +53,10 @@ class Ads extends Component {
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{Obj.adTitle}</h5>
-                                    <h6 className="card-subtitle mb-2 text-muted ">Posted Time{Obj.createdAt}</h6><hr/>
-                                    <h6 className="card-subtitle mb-2 text-muted">Condition{Obj.itemCondition} By 10</h6><hr/>
+                                    <h6 className="card-subtitle mb-2 text-muted ">Posted Time {Obj.createdAt}</h6><hr/>
+                                    <h6 className="card-subtitle mb-2 text-muted">Condition {Obj.itemCondition} By 10</h6><hr/>
                                     <h6 className="card-subtitle mb-2 text-muted">Price Is {Obj.price}</h6><hr/>
-                                    <h6 className="card-subtitle mb-2 text-muted">Posted By{Obj.user}</h6><hr/>
+                                    <h6 className="card-subtitle mb-2 text-muted">Posted By {Obj.user}</h6><hr/>
                                     <p className="card-text">Details : {Obj.itemDetails} </p>
                                     <div className='container-fluid row h-100 justify-content-center align-items-center'>
                                         <Link to={{
@@ -64,7 +64,7 @@ class Ads extends Component {
                                             name: `${JSON.stringify(Obj)}`,
                                             state: { fromDashboard: true }
                                         }}>
-                                            <button className='btn btn-outline-secondary'>Buy</button>
+                                            <button className='btn btn-outline-primary'>Buy</button>
                                         </Link>
                                     </div>
                                 </div>
