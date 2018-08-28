@@ -1,16 +1,52 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Buy extends Component {
     state = {
         ad: {}
     }
+    error = () => {
+        toast.error('Already Saved', {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+
+    }
+    success = () => {
+        toast.success('Successfully Saved Offline', {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+
+    }
     offlineHandler = () => {
         let adsArr = JSON.parse(localStorage.getItem('offlineAds'));
         let ad = this.state.ad;
-        adsArr.push(ad);
-        localStorage.setItem('offlineAds', JSON.stringify(adsArr));
+        let id = ad._id
+        let copy = false;
+        adsArr.map((item) => {
+            if (item._id == id) {
+                copy = true
+                return this.error()
+            }
+        });
+        if (!copy) {
+            adsArr.push(ad);
+            localStorage.setItem('offlineAds', JSON.stringify(adsArr));
+            this.success();
+        }
+
     }
     getAdAuthor = (email) => {
         console.log(email);
@@ -76,7 +112,7 @@ class Buy extends Component {
                                 <p className="card-text"><b>Ad Status</b> <span className='float-right'>{this.state.ad.status}</span></p><hr />
                                 <p className="card-text"><b>Contact</b> <span className='float-right'><a href={`tel:${this.state.ad.contact}`}>{this.state.ad.contact}</a></span></p><hr />
                                 <p className="card-text"><small className="text-muted">Posted Time Is <span className='float-right'>{this.state.ad.createdAt}</span></small></p><hr />
-                                <button className="btn btn-dark" onClick={this.offlineHandler}>Save Ad Offine</button>
+                                <button className="btn btn-outline-secondary" onClick={this.offlineHandler}>Save Ad Offine</button>
                             </div>
                         </div>
                     </div>

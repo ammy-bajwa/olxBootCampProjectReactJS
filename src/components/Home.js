@@ -5,7 +5,7 @@ import Header from './Header';
 class Home extends Component {
     render() {
         return (
-            <div className="container-fluid" id='homeMain'>
+            <div className="container-fluid w-100" id='homeMain'>
                 <Header  history={this.props.history}/>
                 <div className="card-deck">
                     <div className="card d-flex flex-column">

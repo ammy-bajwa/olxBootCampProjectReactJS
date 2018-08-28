@@ -72,8 +72,8 @@ class Header extends Component {
         <div>
           <ToastContainer />
         </div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <h2 className="navbar-brand text-light">
+        <nav className="navbar navbar-expand-lg navbar-light  bg-light ">
+          <h2 className="navbar-brand text-primary">
             <Link to='/'><span className='ml-3'>OLX Pakistan</span></Link>
           </h2>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,7 +145,7 @@ class Header extends Component {
                   <option value='kids'>Kids</option>
                 </select>
               </div>
-              <button className="btn btn-light my-2 my-sm-0 mr-3" type="submit" id='searchBtn'>Search</button>
+              <button className="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="submit" id='searchBtn'>Search</button>
             </form>
           </div>
         </nav>
