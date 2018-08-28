@@ -29,14 +29,14 @@ class Header extends Component {
     });
 
   }
-  logoutHandler = () =>{
+  logoutHandler = () => {
     this.props.logout();
     localStorage.removeItem('userId');
     this.success();
-    let self =this;
-    setTimeout(()=>{
+    let self = this;
+    setTimeout(() => {
       self.props.history.goBack();
-    },2000)
+    }, 2000)
 
   }
   searchHandler = (e) => {
@@ -76,9 +76,11 @@ class Header extends Component {
           <h2 className="navbar-brand text-primary">
             <Link to='/'><span className='ml-3'>OLX Pakistan</span></Link>
           </h2>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
@@ -124,8 +126,8 @@ class Header extends Component {
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0" onSubmit={this.searchHandler}>
-              <input className="form-control mr-sm-2" type="search" 
-              placeholder="Search" aria-label="Search" id='searchInput' required/>
+              <input className="form-control mr-sm-2" type="search"
+                placeholder="Search" aria-label="Search" id='searchInput' required />
               <div className="dropdown mr-sm-2">
                 <select className="form-control" id="searchSelect">
                   <option value='all'>Search All</option>
@@ -145,7 +147,7 @@ class Header extends Component {
                   <option value='kids'>Kids</option>
                 </select>
               </div>
-              <button className="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="submit" id='searchBtn'>Search</button>
+              <button className="btn btn-outline-secondary my-sm-0 mr-2" type="submit" id='searchBtn'>Search</button>
             </form>
           </div>
         </nav>

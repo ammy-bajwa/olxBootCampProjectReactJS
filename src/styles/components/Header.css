@@ -15,3 +15,13 @@
 .navbar-nav {
     margin-bottom: 7px !important;
 }
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+}
+#navbarSupportedContent{
+    padding-left: 10px;
+}
