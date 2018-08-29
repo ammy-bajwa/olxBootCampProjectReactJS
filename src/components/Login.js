@@ -83,6 +83,7 @@ class Login extends Component {
                 }, 2000);
             })
             .catch(function (error) {
+                self.error();
                 console.log(error);
             });
 

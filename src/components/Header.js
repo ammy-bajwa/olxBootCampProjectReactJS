@@ -17,6 +17,17 @@ class Header extends Component {
       draggable: true,
     });
 
+  }  
+  errorServer = () => {
+    toast.error('Nothing Found', {
+      position: "top-left",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+
   }
   success = () => {
     toast.success('Successfully Signout', {
@@ -63,6 +74,7 @@ class Header extends Component {
         console.log(self.props)
       })
       .catch(function (error) {
+        self.errorServer();
         console.log(error);
       });
   }

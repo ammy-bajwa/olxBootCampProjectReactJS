@@ -65,6 +65,7 @@ class Postad extends Component {
         let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
         var filesSelected = document.getElementById("itemPic").files;
         let user = this.props.user.email;
+        document.getElementById('sendBtn').setAttribute('disabled', 'true');
         let self = this;
         if (filesSelected.length > 0) {
             var fileToLoad = filesSelected[0];
@@ -98,6 +99,7 @@ class Postad extends Component {
                         console.log(response);
                     })
                     .catch(function (error) {
+                        self.error();
                         console.log(error);
                     });
                 // var newImage = document.createElement('img');
@@ -468,7 +470,7 @@ class Postad extends Component {
                                 <textarea className="form-control" aria-label="With textarea" id='itemDetails' required></textarea>
                             </div>
 
-                            <button type="submit" className="btn btn-dark mt-3">Post Ad</button>
+                            <button type="submit" className="btn btn-dark mt-3" id='sendBtn'>Post Ad</button>
                         </form>
                     </div>
             

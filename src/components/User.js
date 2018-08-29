@@ -10,6 +10,17 @@ class User extends Component {
     state = {
         dataArray: [],
     }
+    error = () => {
+        toast.error('Internal Error Occured', {
+            position: "top-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+
+    }
     deleteHandler = (ad) => {
         let id = ad._id;
         let self = this;
@@ -32,6 +43,7 @@ class User extends Component {
                 self.success();
             })
             .catch(function (error) {
+                self.error();
                 console.log(error);
             });
     }

@@ -33,13 +33,13 @@ class SendMessage extends Component {
         let adAuthor = this.state.ad.userEmail;
         let adId = this.state.ad._id;
         let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
-
+        document.getElementById('sendBtn').setAttribute('disabled', 'true');
         axios({
             method: 'post',
             url: '/message/send',
             data: {
-                senderName,senderEmail,senderMessage,
-                adAuthor,adId,createdAt
+                senderName, senderEmail, senderMessage,
+                adAuthor, adId, createdAt
             }
         })
             .then(function (response) {
@@ -54,8 +54,10 @@ class SendMessage extends Component {
                 console.log(response);
             })
             .catch(function (error) {
+                self.error();
                 console.log(error);
             });
+
     }
     componentDidMount() {
         let ad;
@@ -95,7 +97,7 @@ class SendMessage extends Component {
                             </div>
                             <textarea className="form-control" aria-label="With textarea" id='message' required></textarea>
                         </div>
-                        <button type="submit" className="btn btn-dark mt-4">Send Message</button>
+                        <button type="submit" className="btn btn-dark mt-4" id='sendBtn'>Send Message</button>
                     </form>
                 </div>
             </div>

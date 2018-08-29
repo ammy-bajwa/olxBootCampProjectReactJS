@@ -38,6 +38,8 @@ class Signup extends Component {
         let city = document.getElementById('inputContact').value;
         let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
         let self = this;
+        document.getElementById('sendBtn').setAttribute('disabled', 'true');
+
         axios({
             method: 'post',
             url: '/user/signup',
@@ -58,6 +60,7 @@ class Signup extends Component {
                 },2000);
             })
             .catch(function (error) {
+                self.error();
                 console.log(error);
             });
     }
@@ -401,7 +404,7 @@ class Signup extends Component {
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-dark">Sign up</button>
+                        <button type="submit" className="btn btn-dark" id='sendBtn'>Sign up</button>
                     </form>
                 </div>
             </div>
