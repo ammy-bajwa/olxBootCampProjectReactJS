@@ -37,7 +37,7 @@ class Search extends Component {
                                             name: `${JSON.stringify(Obj)}`,
                                             state: { fromDashboard: true }
                                         }}>
-                                            <button className='btn btn-dark'>Buy</button>
+                                            <button className='btn btn-outline-primary'>Buy</button>
                                         </Link>
                                     </div>
                                 </div>

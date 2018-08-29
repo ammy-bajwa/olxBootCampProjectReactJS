@@ -404,7 +404,7 @@ class Signup extends Component {
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-dark" id='sendBtn'>Sign up</button>
+                        <button type="submit" className="btn btn-outline-primary " id='sendBtn'>Sign up</button>
                     </form>
                 </div>
             </div>
