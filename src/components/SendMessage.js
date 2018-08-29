@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import moment from 'moment';
 
 class SendMessage extends Component {
     state = {
@@ -27,26 +28,29 @@ class SendMessage extends Component {
         let self = this;
         e.preventDefault();
         let senderName = document.getElementById('senderName').value;
-        let senderEmail = document.getElementById('searchSelect').value;
+        let senderEmail = document.getElementById('senderEmail').value;
         let senderMessage = document.getElementById('message').value;
         let adAuthor = this.state.ad.userEmail;
         let adId = this.state.ad._id;
+        let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
+
         axios({
             method: 'post',
             url: '/message/send',
             data: {
-                senderName,senderEmail,senderMessage,adAuthor,adId
+                senderName,senderEmail,senderMessage,
+                adAuthor,adId,createdAt
             }
         })
             .then(function (response) {
-                // if (response.data.message) {
-                //     self.error();
-                //     return
-                // }
-                // self.success();
-                // setTimeout(() => {
-                //     self.props.history.goBack();
-                // }, 2000);
+                if (response.data.message) {
+                    self.error();
+                    return
+                }
+                self.success();
+                setTimeout(() => {
+                    self.props.history.goBack();
+                }, 2000);
                 console.log(response);
             })
             .catch(function (error) {

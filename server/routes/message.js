@@ -1,5 +1,5 @@
 var express = require('express');
-let { adModel } = require('../db/adModel');
+let { messageModel } = require('../db/messageModel');
 var router = express.Router();
 var FCM = require('fcm-node');
 var serverKey = 'AAAASjP1pJw:APA91bGhQAflwnexy8Qnt9nNhYPHnmBLto8P4kdeSDLpSq1iX2XTwptQ4c3toXY9okKdBk3zLx6S47eA5Wb9M8Jga9immHQUjyo2HZRMuL4aTE1ocUCxs4LdY7EfoNH3OwygXezr5M7bXa5pLLOzrKYw44rasjE66A'; //put your server key here
@@ -29,11 +29,25 @@ router.post('/send', (req, res) => {
         } else {
             console.log("Successfully sent with response: ", response);
         }
-        res.json(response);
     });
+    var newMessage = new messageModel({
+        senderName: req.body.senderName,
+        senderEmail: req.body.senderEmail,
+        senderMessage: req.body.senderMessage,
+        adAuthor: req.body.adAuthor,
+        ad: req.body.adId,
+        createdAt: req.body.createdAt
+    });
+    newMessage.save((err, savedMessage) => {
+        if (err) res.json(err)
+        res.json(savedMessage)
+    })
 });
 router.post('/receive', (req, res) => {
-    console.log(req.body);
+    messageModel.find({adAuthor:req.body.userEmail}).populate('ad').exec((err,result)=>{
+        if(err) res.json(err);
+        res.json(result);
+    });
 
 });
 

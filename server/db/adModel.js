@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const { messageModel } = require('./messageModel');
 
 
 const adSchema = new Schema({
@@ -14,7 +14,8 @@ const adSchema = new Schema({
     catogary: { type: String, required: true },
     subCatogary: { type: String, required: true },
     user: { type: String, required: true },
-    createdAt: { type: String, required: true }
+    createdAt: { type: String, required: true },
+    messages: [{ type: Schema.Types.ObjectId, ref: 'messageModel' }],
 });
 adSchema.index( { adTitle: "text", itemDetails: "text" } )
 let adModel = mongoose.model('adModel', adSchema)
