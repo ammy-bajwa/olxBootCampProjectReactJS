@@ -27,6 +27,7 @@ import User from '../components/User';
 import Edit from '../components/Edit';
 import OfflineAds from '../components/OfflineAds';
 import SendMessage from '../components/SendMessage';
+import Message from '../components/Message';
 
 
 
@@ -39,7 +40,8 @@ const AppRoute = () => {
             <Switch>
                 <Route path='/' component={Home} exact={true} />
                 <PrivateRoute path='/user' component={User} exact={true} />
-                <PrivateRoute path='/sendmessage' component={SendMessage} exact={true} />
+                <Route path='/sendmessage' component={SendMessage} exact={true} />
+                <PrivateRoute path='/message' component={Message} exact={true} />
                 <Route path='/search' component={Search} exact={true} />
                 <Route path='/property' component={Property} exact={true} />
                 <Route path='/offlineads' component={OfflineAds} exact={true} />

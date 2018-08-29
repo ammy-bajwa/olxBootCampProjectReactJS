@@ -25,6 +25,7 @@ const Services = require('./routes/services');
 const Vehicles = require('./routes/vehicles');
 const Search = require('./routes/search');
 const User = require('./routes/user');
+const Message = require('./routes/message');
 
 
 
@@ -57,6 +58,7 @@ app.use(session({
 
 
 app.use('/ad', Ad);
+app.use('/message', Message);
 app.use('/search', Search);
 app.use('/user', User);
 app.use('/animals', Animals);

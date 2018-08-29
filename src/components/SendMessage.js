@@ -3,6 +3,7 @@ import Header from './Header';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 class SendMessage extends Component {
     state = {
@@ -30,7 +31,28 @@ class SendMessage extends Component {
         let senderMessage = document.getElementById('message').value;
         let adAuthor = this.state.ad.userEmail;
         let adId = this.state.ad._id;
-        }
+        axios({
+            method: 'post',
+            url: '/message/send',
+            data: {
+                senderName,senderEmail,senderMessage,adAuthor,adId
+            }
+        })
+            .then(function (response) {
+                // if (response.data.message) {
+                //     self.error();
+                //     return
+                // }
+                // self.success();
+                // setTimeout(() => {
+                //     self.props.history.goBack();
+                // }, 2000);
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     componentDidMount() {
         let ad;
         if (this.props.location.name) {
@@ -41,8 +63,8 @@ class SendMessage extends Component {
         this.setState({
             ad
         })
-        
-       
+
+
     }
 
     render() {
@@ -56,19 +78,19 @@ class SendMessage extends Component {
                         <div className="form-group">
                             <label htmlFor="senderName">Name</label>
                             <input type="text" className="form-control" name="email" id="senderName"
-                             aria-describedby="Name Help" placeholder="Enter Name" required/>
+                                aria-describedby="Name Help" placeholder="Enter Name" required />
                         </div>
                         <div className="form-group">
                             <label htmlFor="senderEmail">Email address</label>
-                            <input type="email" className="form-control" name="senderEmail" 
-                            id="senderEmail" aria-describedby="emailHelp" placeholder="Enter email" required/>
-                          </div>
-                          <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">Enter Message</span>
-                                </div>
-                                <textarea className="form-control" aria-label="With textarea" id='message' required></textarea>
+                            <input type="email" className="form-control" name="senderEmail"
+                                id="senderEmail" aria-describedby="emailHelp" placeholder="Enter email" required />
+                        </div>
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Enter Message</span>
                             </div>
+                            <textarea className="form-control" aria-label="With textarea" id='message' required></textarea>
+                        </div>
                         <button type="submit" className="btn btn-dark mt-4">Send Message</button>
                     </form>
                 </div>

@@ -121,6 +121,11 @@ class Header extends Component {
                   <Link className="nav-link" to="#"><span onClick={this.logoutHandler}>Logout</span></Link>
                 </li> : ''
               }
+              {this.props.auth ?
+                <li className={this.props.auth ? "nav-item" : 'd-none'}>
+                  <Link className="nav-link" to="/message">Messages</Link>
+                </li> : ''
+              }
               <li className={this.props.visible ? "nav-item" : 'd-none'}>
                 <Link className="nav-link" to={`${this.props.postAddress}/postad`}>Post Ad</Link>
               </li>
