@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+mongoose.connect("mongodb://amir:123abc@ds137812.mlab.com:37812/olx-clone");
 const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
@@ -32,9 +33,8 @@ const Message = require('./routes/message');
 
 app.use(flash());
 
-mongoose.connect("mongodb://localhost:27017/olx-clone");
+// mongoose.connect("mongodb://localhost:27017/olx-clone");
 
-// mongoose.connect("mongodb://amirali:123ABCd@ds137812.mlab.com:37812/olx-clone");;
 
 
 mongoose.Promise = global.Promise;

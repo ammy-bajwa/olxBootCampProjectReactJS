@@ -78,10 +78,10 @@ class SendMessage extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <Header history={this.props.history} /><h1 className='text-center mt-5'>Enter Message</h1>
+                <Header history={this.props.history} /><h1 className='text-center mt-5 mb-4'>Enter Message</h1>
                 <div>
                     <ToastContainer />
-                </div><div className='row h-100 justify-content-center align-items-center'>
+                </div><div className='row h-100 justify-content-center'>
                     <form onSubmit={this.messageHandler}>
                         <div className="form-group">
                             <label htmlFor="senderName">Name</label>
@@ -99,7 +99,7 @@ class SendMessage extends Component {
                             </div>
                             <textarea className="form-control" aria-label="With textarea" id='message' required></textarea>
                         </div>
-                        <button type="submit" className="btn btn-dark mt-4" id='sendBtn'>Send Message</button>
+                        <button type="submit" className="btn btn-outline-primary mt-4" id='sendBtn'>Send Message</button>
                     </form>
                 </div>
             </div>
