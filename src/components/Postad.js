@@ -96,7 +96,6 @@ class Postad extends Component {
                         setTimeout(() => {
                             self.props.history.goBack();
                         }, 2000);
-                        console.log(response);
                     })
                     .catch(function (error) {
                         self.error();
@@ -470,7 +469,7 @@ class Postad extends Component {
                                 <textarea className="form-control" aria-label="With textarea" id='itemDetails' required></textarea>
                             </div>
 
-                            <button type="submit" className="btn btn-dark mt-3" id='sendBtn'>Post Ad</button>
+                            <button type="submit" className="btn btn-outline-primary mt-3" id='sendBtn'>Post Ad</button>
                         </form>
                     </div>
             

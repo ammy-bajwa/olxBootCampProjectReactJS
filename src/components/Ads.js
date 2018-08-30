@@ -18,7 +18,6 @@ class Ads extends Component {
                 componentThis.setState({
                     dataArray: response.data
                 });
-                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);

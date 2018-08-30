@@ -55,7 +55,6 @@ class Header extends Component {
     e.preventDefault();
     let searchKeywork = document.getElementById('searchInput').value;
     let catogary = document.getElementById('searchSelect').value;
-    console.log(searchKeywork + '  ' + catogary);
     axios({
       method: 'post',
       url: catogary == 'all' ?
@@ -66,12 +65,10 @@ class Header extends Component {
     })
       .then(function (response) {
         if (response.data.message) {
-          console.log(response.data.message)
           return self.error();
         }
         localStorage.setItem('searchResult', JSON.stringify(response.data));
         self.props.history.push('/search');
-        console.log(self.props)
       })
       .catch(function (error) {
         self.errorServer();

@@ -8,7 +8,6 @@ class Search extends Component {
     }
     componentDidMount() {
         let ads = JSON.parse(localStorage.getItem('searchResult'));
-        console.log(ads)
         this.setState({
             dataArray: ads
         })

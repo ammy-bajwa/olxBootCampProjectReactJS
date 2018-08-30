@@ -34,8 +34,6 @@ class User extends Component {
             .then(function (response) {
                 let dataArray = self.state.dataArray;
                 dataArray = dataArray.filter((item) => item._id !== id)
-                console.log(dataArray)
-                console.log(id);
                 self.setState({
                     dataArray
                 }
@@ -64,13 +62,11 @@ class User extends Component {
                         dataArray: response.data
                     }
                 });
-                console.log(response);
-                console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
-        localStorage.setItem('sendMessage','Hi');
+        localStorage.setItem('sendMessage', 'Hi');
     }
     render() {
         return (
@@ -109,7 +105,7 @@ class User extends Component {
                         })
                     }
                 </div>
-                
+
             </div>
         );
     }

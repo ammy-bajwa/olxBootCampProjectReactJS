@@ -7,12 +7,10 @@ let { adModel } = require('../db/adModel');
 
 
 router.post('/signin', (req, res) => {
-    console.log(req.body);
     userModel.findOne({
         'email': req.body.email,
         'password': req.body.password
     }).then(user => {
-        console.log(user);
         if (!user) {
             return res.json({ notFound: 'No User Found' });
         }
@@ -27,7 +25,6 @@ router.post('/signin', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-    console.log(req.body)
     var newUser = new userModel({
         name: req.body.name,
         lastName: req.body.lastName,
@@ -47,7 +44,6 @@ router.post('/edit', (req, res) => {
     res.end('hello other');
 });
 router.post('/ads', (req, res) => {
-    console.log(req.body)
     adModel.find({ 'user': req.body.email }, (err, ads) => {
         if (err) res.json(err);
         res.json(ads);

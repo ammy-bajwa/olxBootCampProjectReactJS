@@ -52,7 +52,6 @@ class SendMessage extends Component {
                 setTimeout(() => {
                     self.props.history.goBack();
                 }, 2000);
-                console.log(response);
             })
             .catch(function (error) {
                 self.error();

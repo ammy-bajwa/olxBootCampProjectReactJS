@@ -10,7 +10,6 @@ var fcm = new FCM(serverKey);
 
 let token,adUser;
 router.post('/send', (req, res) => {
-    console.log(req.body)
     userModel.findOne({ email: req.body.adAuthor }, (err, user) => {
         if (err) res.json(err);
         token = user.token; var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
@@ -58,11 +57,9 @@ router.post('/receive', (req, res) => {
 
 });
 router.post('/settokken', (req, res) => {
-    console.log(req.body.tokken)
     userModel.findOne({
         'email': req.body.email,
     }).then(user => {
-        console.log(user);
         if (!user) {
             return res.json({ notFound: 'No User Found' });
         }

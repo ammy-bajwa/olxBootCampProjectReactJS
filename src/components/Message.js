@@ -23,7 +23,6 @@ class Message extends Component {
         let self = this;
         user = this.props.user;
         let userEmail = user.email
-        console.log(user)
         axios({
             method: 'post',
             url: '/message/receive',
@@ -35,7 +34,6 @@ class Message extends Component {
                 self.setState({
                     messages: response.data
                 })
-                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);

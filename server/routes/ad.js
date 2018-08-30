@@ -5,7 +5,6 @@ let { userModel } = require('../db/userModel');
 
 
 router.post('/add', (req, res) => {
-    console.log(req.body);
     var newAd = new adModel({
         adTitle: req.body.adTitle,
         itemCondition: req.body.itemCondition,
@@ -25,14 +24,12 @@ router.post('/add', (req, res) => {
     })
 });
 router.post('/remove', (req, res) => {
-    console.log(req.body);
     adModel.findByIdAndRemove({_id:req.body.id},(err,ad)=>{
         if (err) res.json(err);
         res.json(ad);
     })
 });
 router.post('/adauthor', (req, res) => {
-    console.log(req.body)
     userModel.findOne({
         'email': req.body.email
     }, (err, author) => {

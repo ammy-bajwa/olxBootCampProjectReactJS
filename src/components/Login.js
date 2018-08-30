@@ -53,7 +53,6 @@ class Login extends Component {
         let keepLoggedIn = document.getElementById('checkLoggedIn').checked;
         let self = this;
         let token = localStorage.getItem('token');
-        console.log('working')
         axios({
             method: 'post',
             url: '/user/signin',
@@ -62,7 +61,6 @@ class Login extends Component {
             }
         })
             .then(function (response) {
-                console.log(response);
                 if (response.data.message) {
                     self.error();
                     document.getElementById('sendBtn').removeAttribute('disabled');

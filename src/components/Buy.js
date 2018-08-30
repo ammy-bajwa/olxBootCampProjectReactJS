@@ -52,7 +52,6 @@ class Buy extends Component {
 
     }
     getAdAuthor = (email) => {
-        console.log(email);
         let self = this;
         axios({
             method: 'post',
@@ -75,14 +74,12 @@ class Buy extends Component {
                     })
                 }
 
-                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
     componentDidMount() {
-        // console.log(JSON.parse(this.props.location.name))
         let ad;
         if (this.props.location.name) {
             ad = JSON.parse(this.props.location.name)
