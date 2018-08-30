@@ -10,7 +10,7 @@
   };
   firebase.initializeApp(config);
   // Retrieve Firebase Messaging object.
-const messaging = firebase.messaging();
+var messaging = firebase.messaging();
 // Add the public key generated from the console here
 messaging.usePublicVapidKey("BPt9Pyr4t7xXnjMVnyn2zKV65i2yE4NgGQqmEz5aSSwhqtsO9efzDH1CRfcZhxMhdMkIIcenjDh8Rbo9lkK_NpI");
 messaging.requestPermission()

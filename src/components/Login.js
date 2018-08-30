@@ -52,6 +52,7 @@ class Login extends Component {
         let password = document.getElementById('loginPassword').value;
         let keepLoggedIn = document.getElementById('checkLoggedIn').checked;
         let self = this;
+        console.log('working')
         axios({
             method: 'post',
             url: '/user/signin',
@@ -60,6 +61,7 @@ class Login extends Component {
             }
         })
             .then(function (response) {
+                console.log(response);
                 if (response.data.message) {
                     self.error();
                     return
@@ -110,9 +112,9 @@ class Login extends Component {
                             <input type="checkbox" className="form-check-input" id="checkLoggedIn" />
                             <label className="form-check-label" htmlFor="checkLoggedIn">Keep Me Logged in</label>
                         </div>
-                        <button type="submit" className="btn btn-dark mr-2">Submit</button>
+                        <button type="submit" className="btn btn-outline-primary mr-2">Submit</button>
                         <Link to='/signup'>
-                            <button type="button" className="btn btn-outline-primary ">Sign Up</button>
+                            <button type="button" className="btn btn-outline-primary">Sign Up</button>
                         </Link>
                     </form>
                 </div>

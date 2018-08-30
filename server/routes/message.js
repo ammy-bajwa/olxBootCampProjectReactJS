@@ -6,10 +6,12 @@ var serverKey = 'AAAASjP1pJw:APA91bGhQAflwnexy8Qnt9nNhYPHnmBLto8P4kdeSDLpSq1iX2X
 var fcm = new FCM(serverKey);
 
 
-
+let tokken;
 router.post('/send', (req, res) => {
+    console.log(req.body)
+     tokken = req.body.tokken;
     var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-        to: 'dLB_-KDEzCY:APA91bGwLAHZWzgUqncn9LIYJEnf-3KWAkpJdU1yT3MsdskAflBO8wnhBJqTDr5ymCRsMO4tj7jEd0UEkbNWWuhgBc8QWMLMXEtPcuc9E-hLVWa0g0U3L5Humarwxpamn_dvRsVtJOZ3',
+        to: tokken,
         collapse_key: 'BPt9Pyr4t7xXnjMVnyn2zKV65i2yE4NgGQqmEz5aSSwhqtsO9efzDH1CRfcZhxMhdMkIIcenjDh8Rbo9lkK_NpI',
 
         notification: {
@@ -48,6 +50,10 @@ router.post('/receive', (req, res) => {
         if(err) res.json(err);
         res.json(result);
     });
+
+});
+router.post('/settokken', (req, res) => {
+    console.log(req.body.tokken)
 
 });
 
