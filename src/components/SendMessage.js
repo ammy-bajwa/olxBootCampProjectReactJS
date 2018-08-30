@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
@@ -33,17 +32,19 @@ class SendMessage extends Component {
         let adAuthor = this.state.ad.userEmail;
         let adId = this.state.ad._id;
         let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
+        let token = localStorage.getItem('token');
         document.getElementById('sendBtn').setAttribute('disabled', 'true');
         axios({
             method: 'post',
             url: '/message/send',
             data: {
                 senderName, senderEmail, senderMessage,
-                adAuthor, adId, createdAt
+                adAuthor, adId, createdAt,
             }
         })
             .then(function (response) {
                 if (response.data.message) {
+                    document.getElementById('sendBtn').removeAttribute('disabled');
                     self.error();
                     return
                 }
@@ -55,6 +56,7 @@ class SendMessage extends Component {
             })
             .catch(function (error) {
                 self.error();
+                document.getElementById('sendBtn').removeAttribute('disabled');
                 console.log(error);
             });
 

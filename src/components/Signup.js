@@ -38,6 +38,7 @@ class Signup extends Component {
         let city = document.getElementById('inputContact').value;
         let createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
         let self = this;
+        let token = localStorage.getItem('token');
         document.getElementById('sendBtn').setAttribute('disabled', 'true');
 
         axios({
@@ -45,29 +46,31 @@ class Signup extends Component {
             url: '/user/signup',
             data: {
                 name, lastName, email, password,
-                contact, city, createdAt
+                contact, city, createdAt, token
             }
         })
             .then(function (response) {
                 if (response.data.message) {
+                    document.getElementById('sendBtn').removeAttribute('disabled');
                     return self.error();
                 }
                 self.success();
                 self.props.userHandler(response.data);
                 self.props.loginUser();
-                setTimeout(()=>{
-                     self.props.history.push('/');
-                },2000);
+                setTimeout(() => {
+                    self.props.history.push('/');
+                }, 2000);
             })
             .catch(function (error) {
                 self.error();
+                document.getElementById('sendBtn').removeAttribute('disabled');
                 console.log(error);
             });
     }
     render() {
         return (
             <div className="container-fluid">
-                <Header  history={this.props.history} />
+                <Header history={this.props.history} />
                 <div>
                     <ToastContainer />
                 </div>

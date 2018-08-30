@@ -52,18 +52,20 @@ class Login extends Component {
         let password = document.getElementById('loginPassword').value;
         let keepLoggedIn = document.getElementById('checkLoggedIn').checked;
         let self = this;
+        let token = localStorage.getItem('token');
         console.log('working')
         axios({
             method: 'post',
             url: '/user/signin',
             data: {
-                email, password
+                email, password,token
             }
         })
             .then(function (response) {
                 console.log(response);
                 if (response.data.message) {
                     self.error();
+                    document.getElementById('sendBtn').removeAttribute('disabled');
                     return
                 }
                 if (response.data.notFound) {
@@ -85,6 +87,7 @@ class Login extends Component {
                 }, 2000);
             })
             .catch(function (error) {
+                document.getElementById('sendBtn').removeAttribute('disabled');
                 self.error();
                 console.log(error);
             });

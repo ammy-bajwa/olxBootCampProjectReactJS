@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { loginUser } from '../store/action';
 import { userHandler } from '../store/action';
 import AppRoute from '../routes/Router';
+import axios from 'axios';
+
 
 class App extends Component {
   decode = (str) => {
@@ -19,8 +21,27 @@ class App extends Component {
 
       let userId = localStorage.getItem('userId');
       userId = JSON.parse(this.decode(userId));
+      let email = userId.email;
       this.props.userHandler(userId);
       this.props.loginUser();
+      let token = localStorage.getItem('token');
+      axios({
+        method: 'post',
+        url: '/message/settokken',
+        data: {
+          token,email
+        }
+      })
+        .then(function (response) {
+          if (response.data.message) {
+            return console.log('cant set tokken')
+          }
+          console.log('tokken set')
+        })
+        .catch(function (error) {
+          return console.log('cant set tokken')
+
+        });
     }
   }
   render() {

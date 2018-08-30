@@ -16,8 +16,12 @@ router.post('/signin', (req, res) => {
         if (!user) {
             return res.json({ notFound: 'No User Found' });
         }
-        res.json(user)
-    }).catch((err)=>{
+        user.token = req.body.token;
+        user.save((err, user) => {
+            if (err) res.json(err);
+            res.json(user)
+        })
+    }).catch((err) => {
         res.json(err);
     });
 });
@@ -31,6 +35,7 @@ router.post('/signup', (req, res) => {
         password: req.body.password,
         contact: req.body.contact,
         city: req.body.city,
+        token: req.body.token,
         createdAt: req.body.createdAt
     });
     newUser.save((err, savedUser) => {
@@ -43,8 +48,8 @@ router.post('/edit', (req, res) => {
 });
 router.post('/ads', (req, res) => {
     console.log(req.body)
-    adModel.find({'user':req.body.email},(err,ads)=>{
-        if(err) res.json(err);
+    adModel.find({ 'user': req.body.email }, (err, ads) => {
+        if (err) res.json(err);
         res.json(ads);
     })
 });

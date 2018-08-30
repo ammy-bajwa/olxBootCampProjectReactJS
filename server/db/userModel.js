@@ -11,6 +11,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     contact: { type: String, required: true, unique: true },
     city: { type: String, required: true },
+    token: { type: String, required: true },
     createdAt: { type: String, required: true }
 });
 
