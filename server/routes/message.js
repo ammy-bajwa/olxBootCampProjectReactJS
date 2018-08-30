@@ -8,37 +8,35 @@ var fcm = new FCM(serverKey);
 
 
 
-let token;
+let token,adUser;
 router.post('/send', (req, res) => {
     console.log(req.body)
     userModel.findOne({ email: req.body.adAuthor }, (err, user) => {
         if (err) res.json(err);
-        token = user.token;
-        console.log('token in send message ', typeof (token));
+        token = user.token; var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
+            to: 'c7F4u_YMCNc:APA91bHXePD_HNVbnusjVv3GG6cTrQzZ5m8unK_CbCPncfuLP6TgNZIK5GAnwfINViAcl-UK_B9k_N1dzBRzBP1V_g-ycCZywGMxBnNK3Zgav78n1_tz8R-YVWQaQJKd7mjVEK7mDItr',
+            collapse_key: 'your_collapse_key',
+    
+            notification: {
+                title: `Hi ${user.name}`,
+                body: 'You Have A New Message'
+            },
+    
+            data: {  //you can send only notification or only data(or include both)
+                my_key: 'my value',
+                my_another_key: 'my another value'
+            }
+        };
+    
+        fcm.send(message, function (err, response) {
+            if (err) {
+                console.log(err);
+                console.log("Something has gone wrong!");
+            } else {
+                console.log("Successfully sent with response: ", response);
+            }
+        });
     })
-    var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-        to: token,
-        collapse_key: 'your_collapse_key',
-
-        notification: {
-            title: 'Title of your push notification',
-            body: 'Body of your push notification'
-        },
-
-        data: {  //you can send only notification or only data(or include both)
-            my_key: 'my value',
-            my_another_key: 'my another value'
-        }
-    };
-
-    fcm.send(message, function (err, response) {
-        if (err) {
-            console.log(err);
-            console.log("Something has gone wrong!");
-        } else {
-            console.log("Successfully sent with response: ", response);
-        }
-    });
     var newMessage = new messageModel({
         senderName: req.body.senderName,
         senderEmail: req.body.senderEmail,

@@ -16,6 +16,9 @@ var messaging = firebase.messaging();
 //     // window.addEventListener('load', () => {
 //     // });
 // }
+messaging.onMessage(function(payload) {
+  console.log('Message received. ', payload);
+});
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('service-worker.js').then((registration) => {
@@ -34,19 +37,6 @@ if ('serviceWorker' in navigator) {
       .then((token) => {
         // Simple ajax call to send user token to server for saving
         localStorage.setItem('token',token)
-        // $.ajax({
-        //   type: 'POST',
-        //   url: '/message/settokken',
-        //   dataType: 'json',
-        //   data: JSON.stringify({token: token}),
-        //   contentType: 'application/json',
-        //   success: (data) => {
-        //     console.log('Success ', data);
-        //   },
-        //   error: (err) => {
-        //     console.log('Error ', err);
-        //   }
-        // })
         console.log('index.js ',token)
       })
       .catch((err) => {

@@ -165,31 +165,31 @@ self.addEventListener('activate', event => {
 // The fetch handler serves responses for same-origin resources from a cache.
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
+      .then(function (response) {
         if (response) {
           return response;     // if valid response is found in cache return it
         } else {
           return fetch(event.request)     //fetch from internet
-            .then(function(res) {
+            .then(function (res) {
               return caches.open(PRECACHE)
-                .then(function(cache) {
+                .then(function (cache) {
                   cache.put(event.request.url, res.clone());    //save the response for future
                   return res;   // return the fetched data
                 })
             })
-            .catch(function(err) {       // fallback mechanism
+            .catch(function (err) {       // fallback mechanism
               return caches.open('CACHE_CONTAINING_ERROR_MESSAGES')
-                .then(function(cache) {
+                .then(function (cache) {
                   return cache.match('/index.html');
                 });
             });
         }
       })
   );
-}); 
+});
 // Import and configure the Firebase SDK
 // These scripts are made available when the app is served or deployed on Firebase Hosting
 // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
@@ -199,47 +199,25 @@ self.addEventListener('fetch', function(event) {
 
 importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
-   // Initialize Firebase
-   var config = {
-    apiKey: "AIzaSyDX8myqZhSBYg-DH13Cy4moZSnSh8Hxs6k",
-    authDomain: "olx-clone-app.firebaseapp.com",
-    databaseURL: "https://olx-clone-app.firebaseio.com",
-    projectId: "olx-clone-app",
-    storageBucket: "olx-clone-app.appspot.com",
-    messagingSenderId: "318699316380"
-  };
-  firebase.initializeApp(config);
-
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDX8myqZhSBYg-DH13Cy4moZSnSh8Hxs6k",
+  authDomain: "olx-clone-app.firebaseapp.com",
+  databaseURL: "https://olx-clone-app.firebaseio.com",
+  projectId: "olx-clone-app",
+  storageBucket: "olx-clone-app.appspot.com",
+  messagingSenderId: "318699316380"
+};
+firebase.initializeApp(config);
 var messaging = firebase.messaging();
-// Handle incoming messages. Called when:
-// - a message is received while the app has focus
-// - the user clicks on an app notification created by a service worker
-self.addEventListener('notificationclick', (event) => {
-  // Event actions derived from event.notification.data from data received
-  var eventURL = event.notification.data;
-  event.notification.close();
-  if (event.action === 'confirmAttendance') {
-    clients.openWindow(eventURL.confirm);
-  } else {
-    clients.openWindow(eventURL.decline);
-  }
-}, false);
-
-messaging.setBackgroundMessageHandler((payload) => {
-  // Parses data received and sets accordingly
-  const data = JSON.parse(payload.data.notification);
-  const notificationTitle = data.title;
-  const notificationOptions = {
-    body: data.body,
-    // icon: '/static/images/5/icons/android-icon-96x96.png',
-    actions: [
-      {action: 'confirmAttendance', title: '👍 Confirm attendance'},
-      {action: 'cancel', title: '👎 Not coming'}
-    ],
-    // For additional data to be sent to event listeners, needs to be set in this data {}
-    data: {confirm: data.confirm, decline: data.decline}
+messaging.setBackgroundMessageHandler(function(payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // Customize notification here
+  var notificationTitle = 'Background Message Title';
+  var notificationOptions = {
+    body: 'Background Message body.',
   };
 
-  return self.registration.showNotification(notificationTitle, notificationOptions);
+  return self.registration.showNotification(notificationTitle,
+    notificationOptions);
 });
-// [END background_handler]
