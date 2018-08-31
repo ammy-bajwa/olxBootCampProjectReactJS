@@ -3,10 +3,12 @@ import moment from "moment";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import LoadingScreen from "./LoadingScreen";
 
 class Ads extends Component {
   state = {
-    dataArray: []
+    dataArray: [],
+    loading: true
   };
   componentDidMount() {
     let componentThis = this;
@@ -16,7 +18,8 @@ class Ads extends Component {
     })
       .then(function(response) {
         componentThis.setState({
-          dataArray: response.data
+          dataArray: response.data,
+          loading:false
         });
       })
       .catch(function(error) {
@@ -24,6 +27,9 @@ class Ads extends Component {
       });
   }
   render() {
+    if (this.state.loading) {
+      return <LoadingScreen />;
+    }
     return (
       <div className="container-fluid">
         <Header

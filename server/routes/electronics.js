@@ -4,10 +4,13 @@ var router = express.Router();
 
 
 router.get('/camera/ads', (req, res) => {
-    adModel.find({ 'catogary': 'electronics', 'subCatogary': 'agriculture' }, (err, result) => {
+    adModel.find(
+      { catogary: "electronics", subCatogary: "camera" },
+      (err, result) => {
         if (err) res.json(err);
         res.json(result);
-    })
+      }
+    );
 
 });
 router.get('/computer/ads', (req, res) => {

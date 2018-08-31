@@ -15,11 +15,14 @@ router.get('/tablets/ads', (req, res) => {
         res.json(result);
     })
 });
-router.get('/Accessories/ads', (req, res) => {
-    adModel.find({ 'catogary': 'mobiles', 'subCatogary': 'Accessories' }, (err, result) => {
+router.get('/accessories/ads', (req, res) => {
+    adModel.find(
+      { catogary: "mobiles", subCatogary: "accessories" },
+      (err, result) => {
         if (err) res.json(err);
         res.json(result);
-    })
+      }
+    );
 });
 
 //export this router to use in our server.js

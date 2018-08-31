@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import Header from "./Header";
 import { connect } from "react-redux";
 import axios from "axios";
+import LoadingScreen from "./LoadingScreen";
 
 class Message extends Component {
   state = {
-    messages: []
+    messages: [],
+    loading: true
   };
   decode = str => {
     return str.replace(/.{3}/g, c => {
@@ -30,7 +32,8 @@ class Message extends Component {
     })
       .then(function(response) {
         self.setState({
-          messages: response.data
+          messages: response.data,
+          loading: false
         });
       })
       .catch(function(error) {
@@ -39,6 +42,9 @@ class Message extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <LoadingScreen />;
+    }
     return (
       <div className="container-fluid mt-4">
         <Header history={this.props.history} />

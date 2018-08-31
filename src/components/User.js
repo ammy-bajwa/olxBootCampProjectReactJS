@@ -5,10 +5,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingScreen from "./LoadingScreen";
 
 class User extends Component {
     state = {
         dataArray: [],
+        loading: true
+    };
+    success = () => {
+        toast.success("Deleted Successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000
+        });
+
     }
     error = () => {
         toast.error('Internal Error Occured', {
@@ -38,7 +47,7 @@ class User extends Component {
                     dataArray
                 }
                 )
-                self.success();
+                return self.success();
             })
             .catch(function (error) {
                 self.error();
@@ -59,7 +68,8 @@ class User extends Component {
                 self.setState((prevState) => {
                     return {
                         ...prevState,
-                        dataArray: response.data
+                        dataArray: response.data,
+                        loading: false
                     }
                 });
             })
@@ -69,8 +79,11 @@ class User extends Component {
         localStorage.setItem('sendMessage', 'Hi');
     }
     render() {
+        if (this.state.loading) {
+            return <LoadingScreen />;
+        }
         return (
-            <div className="container-fluid" id='postAdMain'>
+            <div className="container-fluid mt-5" id='postAdMain'>
                 <Header history={this.props.history} />
                 <div>
                     <ToastContainer />
