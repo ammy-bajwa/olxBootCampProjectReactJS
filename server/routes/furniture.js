@@ -73,13 +73,6 @@ router.get('/other/ads', (req, res) => {
     })
 
 });
-router.get('/other/ads', (req, res) => {
-    adModel.find({ 'catogary': 'furniture', 'subCatogary': 'other' }, (err, result) => {
-        if (err) res.json(err);
-        res.json(result);
-    })
-
-});
 
 
 

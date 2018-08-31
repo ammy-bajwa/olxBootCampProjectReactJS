@@ -22,8 +22,8 @@ router.get('/footwear/ads', (req, res) => {
         res.json(result);
     })
 });
-router.get('/Jewellery/ads', (req, res) => {
-    adModel.find({ 'catogary': 'fashion', 'subCatogary': 'Jewellery' }, (err, result) => {
+router.get('/jewellery/ads', (req, res) => {
+    adModel.find({ 'catogary': 'fashion', 'subCatogary': 'jewellery' }, (err, result) => {
         if (err) res.json(err);
         res.json(result);
     })
