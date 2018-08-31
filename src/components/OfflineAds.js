@@ -51,12 +51,12 @@ class Kids extends Component {
                                     <img className="card-img-top bodyCardImg" src={Obj.itemPic} alt="Card cap" />
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">{Obj.adTitle}</h5>
-                                    <h6 className="card-subtitle mb-2 text-muted ">Posted Time {Obj.createdAt}</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Condition {Obj.itemCondition} By 10</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Price Is {Obj.price}</h6><hr />
-                                    <h6 className="card-subtitle mb-2 text-muted">Posted By {Obj.user}</h6><hr />
-                                    <p className="card-text">Details : {Obj.itemDetails} </p>
+                                    <h4 className="card-title">{Obj.adTitle}</h4>
+                                    <hr />
+                                    <h5 className="card-title ">Posted Time</h5>
+                                    <p className="card-text"> {Obj.createdAt}</p>
+                                    <h5 className="card-title">Price</h5>
+                                    <p className="card-text">RS {Obj.price}</p>
                                     <div className='container-fluid row h-100 justify-content-center align-items-center'>
                                         <Link to={{
                                             pathname: `/${Obj.catogary}/${Obj.subCatogary}/ads/buy`,

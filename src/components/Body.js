@@ -12,13 +12,14 @@ class Body extends Component {
   }
   render() {
     return (
-      <div className="container-fluid row h-100 justify-content-center align-items-center">
+      <div className="container">
+      <div className="row">
         {this.state.dataArray.length == 0
           ? ""
           : this.state.dataArray.map((Obj, i) => {
               return (
-                <div className="container">
-                  <div className="card bodyCard d-inline-flex" key={i}>
+                <div className="col-md-3" key={i}>
+                  <div className="card">
                     <Link to={`${Obj.link}/ads`}>
                       <div className="row h-100 justify-content-center align-items-center">
                         <img
@@ -35,6 +36,7 @@ class Body extends Component {
                 </div>
               );
             })}
+        </div>
       </div>
     );
   }
