@@ -38,7 +38,7 @@ class Kids extends Component {
     }
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid m-4">
                 <Header history={this.props.history} /><h1 className='text-center mt-5'>All Offline Ads</h1>
                 <div>
                     <ToastContainer />

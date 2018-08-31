@@ -107,9 +107,9 @@ class Buy extends Component {
         return (
             <div className="container-fluid">
                 <Header history={this.props.history} />
-                <div className="mb-3">
+                <div className="m-5">
                     <div className='container-fluid row h-100 justify-content-center align-items-center'>
-                        <img className="card-img-top" src={this.state.ad.itemPic} alt="Card cap" />
+                        <img className="w-20 mt-3" src={this.state.ad.itemPic} alt="Card cap" />
                     </div>
                     <div className="card-body">
                         <div className="jumbotron jumbotron-fluid">

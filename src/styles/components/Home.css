@@ -4,6 +4,7 @@
     text-align: center;
     border:none;
     padding: 10px;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1) !important
 }
 .card:hover h5{
     color: white;
