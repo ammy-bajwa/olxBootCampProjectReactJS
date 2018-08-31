@@ -106,7 +106,7 @@ class User extends Component {
                                     <div className='container-fluid row h-100 justify-content-center align-items-center'>
                                         <Link to={{
                                             pathname: `/${Obj.catogary}/${Obj.subCatogary}/ads/buy`,
-                                            name: `${JSON.stringify(Obj)}`,
+                                            name: `${JSON.stringify({...Obj,userPath:true})}`,
                                             state: { fromDashboard: true }
                                         }}>
                                             <button className='btn btn-dark'>Details</button>

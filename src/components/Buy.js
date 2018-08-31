@@ -92,15 +92,8 @@ class Buy extends Component {
         this.setState({
             ad
         })
-        if (localStorage.getItem('sendMessage')) {
-            this.setState({
-                btnVisibility:false
-            }) ;
-        }
-    }
-    componentWillUnmount(){
-        if(localStorage.getItem('sendMessage')){
-            localStorage.removeItem('sendMessage');
+        if (ad.userPath) {
+          this.setState({ btnVisibility: false });
         }
     }
     render() {
