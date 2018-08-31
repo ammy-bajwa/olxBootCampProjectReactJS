@@ -28,3 +28,11 @@
 #brandText{
     color: #007bff;
 }
+@media screen and (max-width: 600px){
+.row {
+    margin: 15px 0px !important;
+}
+}
+#headerMain{
+    margin: 0 0 4% 0px !important;
+}

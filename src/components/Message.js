@@ -42,27 +42,40 @@ class Message extends Component {
     }
 
     render() {
-        return (
-            <div className="container-fluid">
-                <Header history={this.props.history} />
-                <h1 className='text-center mt-5'>All Messages</h1>
-                <div className="container-fluid row h-100 justify-content-center align-items-center">
-                    {
-                        this.state.messages.length == 0 ? 'No Message' : this.state.messages.map((Obj, i) => {
-                            return <div className="card bodyCard d-inline-flex" key={i}>
-                                <div className='row h-100 justify-content-center align-items-center'>
-                                    <img class="card-img-top" src={`${Obj.ad[0].itemPic}`} alt="Card image cap" />
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{Obj.ad[0].adTitle}</h5>
-                                    <p class="card-text">{Obj.senderMessage}</p>
-                                </div>
-                            </div>
-                        })
+        return <div className="container-fluid mt-4">
+            <Header history={this.props.history} />
+            <h1 className="text-center mt-5">All Messages</h1>
+            <div className="container-fluid row h-100 justify-content-center align-items-center">
+              {this.state.messages.length == 0 ? "No Message" : this.state.messages.map(
+                    (Obj, i) => {
+                      return (
+                        <div
+                          className="card bodyCard d-inline-flex"
+                          key={i}
+                        >
+                          <div className="row h-100 justify-content-center align-items-center">
+                            <img
+                              className="card-img-top"
+                              src={`${Obj.ad[0].itemPic}`}
+                              alt="Card image cap"
+                            />
+                          </div>
+                          <div className="card-body">
+                            <h5 className="card-title">
+                              {Obj.ad[0].adTitle}
+                            </h5>
+                            <hr />
+                            <h5 className="card-title">Message</h5>
+                            <p className="card-text">
+                              {Obj.senderMessage}
+                            </p>
+                          </div>
+                        </div>
+                      );
                     }
-                </div>
+                  )}
             </div>
-        );
+          </div>;
     }
 }
 
