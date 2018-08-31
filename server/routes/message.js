@@ -4,7 +4,7 @@ var router = express.Router();
 let { userModel } = require('../db/userModel');
 var FCM = require('fcm-node');
 var serverKey = 'AAAASjP1pJw:APA91bGhQAflwnexy8Qnt9nNhYPHnmBLto8P4kdeSDLpSq1iX2XTwptQ4c3toXY9okKdBk3zLx6S47eA5Wb9M8Jga9immHQUjyo2HZRMuL4aTE1ocUCxs4LdY7EfoNH3OwygXezr5M7bXa5pLLOzrKYw44rasjE66A'; //put your server key here
-var fcm = new FCM(serverKey);
+
 
 
 
@@ -12,8 +12,9 @@ let token,adUser;
 router.post('/send', (req, res) => {
     userModel.findOne({ email: req.body.adAuthor }, (err, user) => {
         if (err) res.json(err);
+        var fcm = new FCM(serverKey);
         token = user.token; var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-            to: 'c7F4u_YMCNc:APA91bHXePD_HNVbnusjVv3GG6cTrQzZ5m8unK_CbCPncfuLP6TgNZIK5GAnwfINViAcl-UK_B9k_N1dzBRzBP1V_g-ycCZywGMxBnNK3Zgav78n1_tz8R-YVWQaQJKd7mjVEK7mDItr',
+            to: `${user.token}`,
             collapse_key: 'your_collapse_key',
     
             notification: {
