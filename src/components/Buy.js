@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { connect } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "./LoadingScreen";
 
@@ -59,6 +60,11 @@ class Buy extends Component {
       }
     })
       .then(function(response) {
+        if (self.props.user) {
+          if (response.data.email == self.props.user.email) {
+            self.setState({ btnVisibility: false });
+          }
+        }
         if (response.data.name) {
           self.setState(prevState => {
             return {
@@ -102,7 +108,7 @@ class Buy extends Component {
     return (
       <div className="container-fluid">
         <Header history={this.props.history} />
-        <div className="m-5">
+        <div className="mt-5">
           <div className="container-fluid row h-100 justify-content-center align-items-center">
             <img
               className="w-20 mt-3"
@@ -111,7 +117,7 @@ class Buy extends Component {
             />
           </div>
           <div className="card-body">
-            <div className="jumbotron jumbotron-fluid">
+            <div className="jumbotron jumbotron-fluid" id="adDetails">
               <div className="container">
                 <h1 className="display-4">{this.state.ad.adTitle}</h1>
                 <p className="card-text">
@@ -188,4 +194,10 @@ class Buy extends Component {
   }
 }
 
-export default Buy;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Buy);

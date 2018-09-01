@@ -9,243 +9,241 @@ class Home extends Component {
         <Header history={this.props.history} />
         <div className="row">
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/property.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/property">
+            <Link to="/property">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/property.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Property for Sale</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/rent.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/rent">
+            <Link to="/rent">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/rent.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Property for Rent</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/car.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/vehicles">
+            <Link to="/vehicles">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/car.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Vehicles</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/bike.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/bikes">
+            <Link to="/bikes">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/bike.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Bikes</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="row">
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/electronic.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/electronics">
+            <Link to="/electronics">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/electronic.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Electronics & Home Appliances</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/mobile.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="mobiles">
+            <Link to="mobiles">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/mobile.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Mobiles</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/businessman.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/jobs">
+            <Link to="/jobs">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/businessman.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Jobs</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/customer.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/services">
+            <Link to="/services">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/customer.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Services</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/industry.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/buisiness">
+            <Link to="/buisiness">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/industry.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">
                     Business Industrial & Agriculture
                   </h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/furniture.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/furniture">
+            <Link to="/furniture">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/furniture.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Furniture & Home Decorate</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/animal.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/animals">
+            <Link to="/animals">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/animal.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Animals</h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="col-md-3">
-            <div className="card">
-              <div className="row h-100 justify-content-center align-items-center">
-                <img
-                  className="card-img-top homeCard"
-                  src="./images/fashion.svg"
-                  alt="Card cap"
-                />
-              </div>
-              <div className="card-body">
-                <Link to="/fashion">
+            <Link to="/fashion">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/fashion.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
                   <h5 className="card-title">Fashion & Beauty </h5>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="row">
-        <div className="col-md-3">
-        </div>
-        <div className="col-md-3">
-                    <div className="card">
-                        <div className="row h-100 justify-content-center align-items-center">
-                            <img
-                                className="card-img-top homeCard"
-                                src="./images/books.svg"
-                                alt="Card cap"
-                            />
-                        </div>
-                        <div className="card-body">
-                            <Link to="/books">
-                                <h5 className="card-title">Books, Sports & Hobbies</h5>
-                            </Link>
-                        </div>
-                    </div>
+          <div className="col-md-3" />
+          <div className="col-md-3">
+            <Link to="/books">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/books.svg"
+                    alt="Card cap"
+                  />
                 </div>
-                <div className="col-md-3">
-                    <div className="card">
-                        <div className="row h-100 justify-content-center align-items-center">
-                            <img
-                                className="card-img-top homeCard"
-                                src="./images/kids.svg"
-                                alt="Card cap"
-                            />
-                        </div>
-                        <div className="card-body">
-                            <Link to="/kids">
-                                <h5 className="card-title">Kids</h5>
-                            </Link>
-                        </div>
-                    </div>
-                </div>          
-                <div className="col-md-3">
-                </div>     
+                <div className="card-body">
+                  <h5 className="card-title">Books, Sports & Hobbies</h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="col-md-3">
+            <Link to="/kids">
+              <div className="card">
+                <div className="row h-100 justify-content-center align-items-center">
+                  <img
+                    className="card-img-top homeCard"
+                    src="./images/kids.svg"
+                    alt="Card cap"
+                  />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">Kids</h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="col-md-3" />
         </div>
       </div>
     );

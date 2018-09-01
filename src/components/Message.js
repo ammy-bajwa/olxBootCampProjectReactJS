@@ -49,12 +49,14 @@ class Message extends Component {
       }
     })
       .then(function(response) {
+        document.getElementById("del").removeAttribute("disabled");
         if (response.data.message) {
           return self.error();
         }
         return self.success();
       })
       .catch(function(error) {
+        document.getElementById("del").removeAttribute("disabled");
         self.error();
         console.log(error);
       });
