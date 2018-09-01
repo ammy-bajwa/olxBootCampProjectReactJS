@@ -23,7 +23,7 @@
   -->
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  
+
   <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
   <!-- <script src="./firebaseMessaging.js">
   </script> -->
@@ -36,9 +36,152 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <title>Free classifieds in Pakistan, classified ads in Pakistan</title>
+  <style>
+    .con {
+      height: 200px;
+      width: 200px;
+      margin: auto;
+      margin-top: 100px;
+      position: relative;
+    }
+
+    .test {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      background-color: black;
+      border-radius: 100%;
+      z-index: -1;
+      animation: rotat360 2s infinite 0s linear;
+    }
+
+    .test:after {
+      content: '';
+      height: calc(100% - 2px);
+      width: calc(100% - 2px);
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      background-color: white;
+      border-radius: 100%;
+      z-index: 1;
+    }
+
+    .test:before {
+      content: '';
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: -15px;
+      left: calc(50% - 15px);
+      background-color: black;
+      border-radius: 100%;
+      z-index: 2;
+    }
+
+    .test2 {
+      height: calc(100% - 60px);
+      width: calc(100% - 60px);
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      background-color: black;
+      border-radius: 100%;
+      z-index: 3;
+      transform: rotate(30deg);
+      animation: rotat360 1.5s infinite 0s linear;
+    }
+
+    .test2:after {
+      content: '';
+      height: calc(100% - 2px);
+      width: calc(100% - 2px);
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      background-color: white;
+      border-radius: 100%;
+      z-index: 4;
+    }
+
+    .test2:before {
+      content: '';
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: -10px;
+      left: calc(50% - 10px);
+      background-color: black;
+      border-radius: 100%;
+      z-index: 5;
+    }
+
+    .test3 {
+      height: calc(100% - 120px);
+      width: calc(100% - 120px);
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      background-color: black;
+      border-radius: 100%;
+      z-index: 6;
+      transform: rotate(60deg);
+      animation: rotat360 1s infinite 0s linear;
+    }
+
+    .test3:after {
+      content: '';
+      height: calc(100% - 2px);
+      width: calc(100% - 2px);
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      background-color: white;
+      border-radius: 100%;
+      z-index: 7;
+    }
+
+    .test3:before {
+      content: '';
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      top: -5px;
+      left: calc(50% - 5px);
+      background-color: black;
+      border-radius: 100%;
+      z-index: 8;
+    }
+
+    .center {
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      top: calc(50% - 20px);
+      left: calc(50% - 20px);
+      background-color: black;
+      border-radius: 100%;
+      z-index: 9;
+    }
+
+    @keyframes rotat360 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="con" id='loadingMain'>
+    <div class="test"> </div>
+    <div class="test2"> </div>
+    <div class="test3"> </div>
+    <div class="center"> </div>
+  </div>
   <div id="app"></div>
   <script src="/app.js"></script>
   <!--

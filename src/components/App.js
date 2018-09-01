@@ -16,6 +16,7 @@ class App extends Component {
     });
   };
   componentDidMount() {
+    document.getElementById("loadingMain").remove();
     this.setState(() => ({
       loading: false
     }));
