@@ -35,38 +35,36 @@ const history = createBrowserHistory()
 
 
 const AppRoute = () => {
-    return (
-        <Router history={history}>
-            <Switch>
-                <Route path='/' component={Home} exact={true} />
-                <PrivateRoute path='/user' component={User} exact={true} />
-                <Route path='/sendmessage' component={SendMessage} exact={true} />
-                <PrivateRoute path='/message' component={Message} exact={true} />
-                <Route path='/search' component={Search} exact={true} />
-                <Route path='/property' component={Property} exact={true} />
-                <Route path='/offlineads' component={OfflineAds} exact={true} />
-                <Route path='/rent' component={Rent} exact={true} />
-                <Route path='/vehicles' component={Vehicles} exact={true} />
-                <Route path='/bikes' component={Bikes} exact={true} />
-                <Route path='/electronics' component={Electronics} exact={true} />
-                <Route path='/mobiles' component={Mobiles} exact={true} />
-                <Route path='/jobs' component={Jobs} exact={true} />
-                <Route path='/services' component={Services} exact={true} />
-                <Route path='/buisiness' component={Buisiness} exact={true} />
-                <Route path='/furniture' component={Furniture} exact={true} />
-                <Route path='/animals' component={Animals} exact={true} />
-                <Route path='/books' component={Books} exact={true} />
-                <Route path='/fashion' component={Fashion} exact={true} />
-                <Route path='/kids' component={Kids} exact={true} />
-                <Route path='/login' component={Login} exact={true} />
-                <Route path='/signup' component={Signup} exact={true} />
-                <PrivateRoute path='/:catogary/:subcatogary/ads/postad' component={Postad} exact={true} />
-                <Route path='/:catogary/:subcatogary/ads' component={Ads} exact={true} />
-                <Route path='/:catogary/:subcatogary/ads/buy' component={Buy} exact={true} />
-                <PrivateRoute path='/:catogary/:subcatogary/ads/edit' component={Edit} exact={true} />
-            </Switch>
-        </Router>
-    );
+    return <Router history={history}>
+        <Switch>
+          <Route path="/" component={Home} exact={true} />
+          <PrivateRoute path="/user" component={User} exact={true} />
+          <PrivateRoute path="/sendmessage" component={SendMessage} exact={true} />
+          <PrivateRoute path="/message" component={Message} exact={true} />
+          <Route path="/search" component={Search} exact={true} />
+          <Route path="/property" component={Property} exact={true} />
+          <Route path="/offlineads" component={OfflineAds} exact={true} />
+          <Route path="/rent" component={Rent} exact={true} />
+          <Route path="/vehicles" component={Vehicles} exact={true} />
+          <Route path="/bikes" component={Bikes} exact={true} />
+          <Route path="/electronics" component={Electronics} exact={true} />
+          <Route path="/mobiles" component={Mobiles} exact={true} />
+          <Route path="/jobs" component={Jobs} exact={true} />
+          <Route path="/services" component={Services} exact={true} />
+          <Route path="/buisiness" component={Buisiness} exact={true} />
+          <Route path="/furniture" component={Furniture} exact={true} />
+          <Route path="/animals" component={Animals} exact={true} />
+          <Route path="/books" component={Books} exact={true} />
+          <Route path="/fashion" component={Fashion} exact={true} />
+          <Route path="/kids" component={Kids} exact={true} />
+          <Route path="/login" component={Login} exact={true} />
+          <Route path="/signup" component={Signup} exact={true} />
+          <PrivateRoute path="/:catogary/:subcatogary/ads/postad" component={Postad} exact={true} />
+          <Route path="/:catogary/:subcatogary/ads" component={Ads} exact={true} />
+          <Route path="/:catogary/:subcatogary/ads/buy" component={Buy} exact={true} />
+          <PrivateRoute path="/:catogary/:subcatogary/ads/edit" component={Edit} exact={true} />
+        </Switch>
+      </Router>;
 }
 
 export default AppRoute;
