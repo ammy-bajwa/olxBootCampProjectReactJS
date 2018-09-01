@@ -43,7 +43,8 @@ router.post("/send", (req, res) => {
     senderMessage: req.body.senderMessage,
     adAuthor: req.body.adAuthor,
     ad: req.body.adId,
-    createdAt: req.body.createdAt
+    createdAt: req.body.createdAt,
+    replyStatus: false
   });
   newMessage.save((err, savedMessage) => {
     if (err) res.json(err);
@@ -60,10 +61,22 @@ router.post("/receive", (req, res) => {
     });
 });
 router.post("/reply", (req, res) => {
-  console.log('this is body ',req.body);
+  console.log(req.body);
+  let newReply = new messageModel({
+    senderName: req.body.senderName,
+    senderEmail: req.body.senderEmail,
+    senderMessage: req.body.senderMessage,
+    adAuthor: req.body.messageReceiver,
+    ad: req.body.adId,
+    createdAt: req.body.createdAt,
+    replyStatus: "false"
+  });
+  newReply.save((err, savedMessage) => {
+    console.log("area va haha");
+    if (err) res.json(err);
+  });
   userModel.findOne({ email: req.body.messageReceiver }, (err, user) => {
     if (err) res.json(err);
-    console.log('rhis is user ',user)
     var fcm = new FCM(serverKey);
     var message = {
       //this may vary according to the message type (single recipient, multicast, topic, et cetera)
@@ -82,25 +95,25 @@ router.post("/reply", (req, res) => {
 
     fcm.send(message, function(err, response) {
       if (err) {
-        console.log(err);
         console.log("Something has gone wrong!");
       } else {
-        console.log("Successfully sent with response: ", response);
+        console.log("Successfully sent with response");
       }
     });
   });
-  var newMessage = new messageModel({
-    senderName: req.body.senderName,
-    senderEmail: req.body.senderEmail,
-    senderMessage: req.body.senderMessage,
-    adAuthor: req.body.messageReceiver,
-    ad: req.body.adId,
-    createdAt: req.body.createdAt
-  });
-  newMessage.save((err, savedMessage) => {
-    if (err) res.json(err);
-    res.json(savedMessage);
-  });
+
+  messageModel
+    .findOne({ _id: req.body.messageId })
+    .then(message => {
+      message.replyStatus = "true";
+      return message.save(err => {
+        if (err) res.json(err);
+      });
+    })
+    .then(message => res.json(message))
+    .catch(err => {
+      res.json(err);
+    });
 });
 router.post("/settokken", (req, res) => {
   userModel
@@ -117,6 +130,19 @@ router.post("/settokken", (req, res) => {
         res.json(user);
       });
     })
+    .catch(err => {
+      res.json(err);
+    });
+});
+router.post("/delete", (req, res) => {
+  console.log(req.body)
+  messageModel
+    .findOneAndRemove({
+      _id : req.body.id
+    })
+    .then(message => {
+      res.json(message);
+     })
     .catch(err => {
       res.json(err);
     });

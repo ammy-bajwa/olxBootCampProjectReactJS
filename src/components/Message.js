@@ -9,7 +9,7 @@ import LoadingScreen from "./LoadingScreen";
 
 class Message extends Component {
   success = () => {
-    toast.success("Message Send Successfully!", {
+    toast.success("Operation Successfully!", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000
     });
@@ -31,15 +31,33 @@ class Message extends Component {
   };
   messageDeleteHandler = message => {
     let messages = this.state.messages;
+    let self = this;
     let id = message._id;
     messages = messages.filter(item => item._id !== id);
+    document.getElementById("del").setAttribute("disabled", true);
     this.setState(prevState => {
       return {
         ...prevState,
         messages
       };
     });
-    this.success();
+    axios({
+      method: "post",
+      url: "/message/delete",
+      data: {
+        id
+      }
+    })
+      .then(function(response) {
+        if (response.data.message) {
+          return self.error();
+        }
+        return self.success();
+      })
+      .catch(function(error) {
+        self.error();
+        console.log(error);
+      });
   };
   replyMessage = message => {
     let self = this;
@@ -48,6 +66,7 @@ class Message extends Component {
     let senderMessage = document.getElementById("message").value;
     let messageReceiver = message.senderEmail;
     let adId = message.ad[0]._id;
+    let messageId = message._id;
     let createdAt = moment().format("MMMM Do YYYY, h:mm:ss a");
     document.getElementById("sendBtn").setAttribute("disabled", "true");
     axios({
@@ -59,7 +78,8 @@ class Message extends Component {
         senderMessage,
         messageReceiver,
         adId,
-        createdAt
+        createdAt,
+        messageId
       }
     })
       .then(function(response) {
@@ -68,6 +88,23 @@ class Message extends Component {
           self.error();
           return;
         }
+        let messages = self.state.messages;
+        (messages = messages.map(message => {
+          if (message._id == messageId) {
+            message = {
+              ...message,
+              replyStatus: "true"
+            };
+            return message;
+          }
+          return message;
+        })),
+        self.setState(prevState => {
+          return {
+            messages,
+            loading: false
+          };
+        });
         self.success();
         setTimeout(() => {
           document.getElementById("modalCloseBtn").click();
@@ -111,123 +148,133 @@ class Message extends Component {
     if (this.state.loading) {
       return <LoadingScreen />;
     }
-    return <div className="container-fluid mt-4">
+    return (
+      <div className="container-fluid mt-4">
         <Header history={this.props.history} />
         <h1 className="text-center mt-5">All Messages</h1>
         <div>
           <ToastContainer />
         </div>
         <div className="container-fluid row h-100 justify-content-center align-items-center">
-          {this.state.messages.length == 0 ? "No Message" : this.state.messages.map(
-                (Obj, i) => {
-                  return (
-                    <div className="card bodyCard d-inline-flex" key={i}>
-                      <div className="row h-100 justify-content-center align-items-center">
-                        <img
-                          className="card-img-top"
-                          src={`${Obj.ad[0].itemPic}`}
-                          alt="Card image cap"
-                        />
+          {this.state.messages.length == 0
+            ? "No Message"
+            : this.state.messages.map((Obj, i) => {
+                return (
+                  <div className="card bodyCard d-inline-flex" key={i}>
+                    <div className="row h-100 justify-content-center align-items-center">
+                      <img
+                        className="card-img-top"
+                        src={`${Obj.ad[0].itemPic}`}
+                        alt="Card image cap"
+                      />
+                    </div>
+                    {Obj.replyStatus == "false" ? (
+                      <div className="alert alert-danger m-3" role="alert">
+                        You did`t reply to this message yet
                       </div>
-                      <div className="card-body">
-                        <h5 className="card-title">{Obj.ad[0].adTitle}</h5>
-                        <hr />
-                        <h5 className="card-title">Message</h5>
-                        <p className="card-text">{Obj.senderMessage}</p>
-                        <hr />
-                        <h5 className="card-title">Sender Name</h5>
-                        <p className="card-text">{Obj.senderName}</p>
-                        <hr />
-                        <h5 className="card-title">Sender Email</h5>
-                        <p className="card-text">{Obj.senderEmail}</p>
-                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="card-body">
+                      <h5 className="card-title">{Obj.ad[0].adTitle}</h5>
+                      <hr />
+                      <h5 className="card-title">Message</h5>
+                      <p className="card-text">{Obj.senderMessage}</p>
+                      <hr />
+                      <h5 className="card-title">Sender Name</h5>
+                      <p className="card-text">{Obj.senderName}</p>
+                      <hr />
+                      <h5 className="card-title">Sender Email</h5>
+                      <p className="card-text">{Obj.senderEmail}</p>
+                    </div>
+                    <div
+                      className="modal fade"
+                      id="messageModal"
+                      tabIndex="-1"
+                      role="dialog"
+                      aria-labelledby="messageModal"
+                      aria-hidden="true"
+                    >
                       <div
-                        className="modal fade"
-                        id="messageModal"
-                        tabIndex="-1"
-                        role="dialog"
-                        aria-labelledby="messageModal"
-                        aria-hidden="true"
+                        className="modal-dialog modal-dialog-centered"
+                        role="document"
                       >
-                        <div
-                          className="modal-dialog modal-dialog-centered"
-                          role="document"
-                        >
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h5
-                                className="modal-title text-dark"
-                                id="exampleModalLongTitle"
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5
+                              className="modal-title text-dark"
+                              id="exampleModalLongTitle"
+                            >
+                              Enter Reply
+                            </h5>
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            <div className="row h-100 justify-content-center">
+                              <div className="input-group">
+                                <div className="input-group-prepend">
+                                  <span className="input-group-text">
+                                    Enter Message
+                                  </span>
+                                </div>
+                                <textarea
+                                  className="form-control"
+                                  aria-label="With textarea"
+                                  id="message"
+                                  required
+                                />
+                              </div>
+                              <button
+                                type="submit"
+                                className="btn btn-outline-primary mt-4"
+                                id="sendBtn"
+                                onClick={() => this.replyMessage(Obj)}
                               >
-                                Enter Reply
-                              </h5>
+                                Send Message
+                              </button>
                               <button
                                 type="button"
-                                className="close"
+                                className="btn btn-outline-primary mt-4 ml-3"
                                 data-dismiss="modal"
-                                aria-label="Close"
+                                id="modalCloseBtn"
                               >
-                                <span aria-hidden="true">&times;</span>
+                                Close
                               </button>
-                            </div>
-                            <div className="modal-body">
-                              <div className="row h-100 justify-content-center">
-                                <div className="input-group">
-                                  <div className="input-group-prepend">
-                                    <span className="input-group-text">
-                                      Enter Message
-                                    </span>
-                                  </div>
-                                  <textarea
-                                    className="form-control"
-                                    aria-label="With textarea"
-                                    id="message"
-                                    required
-                                  />
-                                </div>
-                                <button
-                                  type="submit"
-                                  className="btn btn-outline-primary mt-4"
-                                  id="sendBtn"
-                                  onClick={() => this.replyMessage(Obj)}
-                                >
-                                  Send Message
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-primary mt-4 ml-3"
-                                  data-dismiss="modal"
-                                  id="modalCloseBtn"
-                                >
-                                  Close
-                                </button>
-                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="container-fluid row h-100 justify-content-center align-items-center">
-                        <button
-                          className="btn btn-outline-primary"
-                          data-toggle="modal"
-                          data-target="#messageModal"
-                        >
-                          Reply
-                        </button>
-
-                        <button
-                          className="btn btn-danger ml-3"
-                          onClick={() => this.messageDeleteHandler(Obj)}
-                        >
-                          Delete
-                        </button>
-                      </div>
                     </div>
-                  );
-                }
-              )}
+                    <div className="container-fluid row h-100 justify-content-center align-items-center">
+                      <button
+                        className="btn btn-outline-primary"
+                        data-toggle="modal"
+                        data-target="#messageModal"
+                      >
+                        Reply
+                      </button>
+
+                      <button
+                        className="btn btn-danger ml-3"
+                        id="del"
+                        onClick={() => this.messageDeleteHandler(Obj)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 

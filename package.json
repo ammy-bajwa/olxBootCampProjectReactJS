@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "devServer": "webpack-dev-server",
-    "webpack": "webpack --watch",
+    "webpack": "code .&& webpack --watch",
     "webpack:prod": "webpack -p --env",
     "start": "node server/server.js",
     "heroku-postbuild": "npm run webpack:prod"
