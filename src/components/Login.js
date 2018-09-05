@@ -51,6 +51,7 @@ class Login extends Component {
         let email = document.getElementById('loginEmail').value;
         let password = document.getElementById('loginPassword').value;
         let keepLoggedIn = document.getElementById('checkLoggedIn').checked;
+        document.getElementById('sendBtn').setAttribute('disabled','true');
         let self = this;
         let token = localStorage.getItem('token');
         axios({
@@ -113,7 +114,7 @@ class Login extends Component {
                             <input type="checkbox" className="form-check-input" id="checkLoggedIn" />
                             <label className="form-check-label" htmlFor="checkLoggedIn">Keep Me Logged in</label>
                         </div>
-                        <button type="submit" className="btn btn-outline-primary mr-2">Submit</button>
+                        <button type="submit" className="btn btn-outline-primary mr-2" id='sendBtn'>Submit</button>
                         <Link to='/signup'>
                             <button type="button" className="btn btn-outline-primary">Sign Up</button>
                         </Link>

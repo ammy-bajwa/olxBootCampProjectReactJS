@@ -34,21 +34,24 @@ class Buy extends Component {
     });
   };
   offlineHandler = () => {
-    let adsArr = JSON.parse(localStorage.getItem("offlineAds"));
-    let ad = this.state.ad;
-    let id = ad._id;
-    let copy = false;
-    adsArr.map(item => {
-      if (item._id == id) {
-        copy = true;
-        return this.error();
+    if (this.props.user) {
+      let adsArr = JSON.parse(localStorage.getItem("offlineAds"));
+      let ad = this.state.ad;
+      let id = ad._id;
+      let copy = false;
+      adsArr.map(item => {
+        if (item._id == id) {
+          copy = true;
+          return this.error();
+        }
+      });
+      if (!copy) {
+        adsArr.push(ad);
+        localStorage.setItem("offlineAds", JSON.stringify(adsArr));
+        this.success();
       }
-    });
-    if (!copy) {
-      adsArr.push(ad);
-      localStorage.setItem("offlineAds", JSON.stringify(adsArr));
-      this.success();
     }
+    this.props.history.push('/login')
   };
   getAdAuthor = email => {
     let self = this;
@@ -59,7 +62,7 @@ class Buy extends Component {
         email
       }
     })
-      .then(function(response) {
+      .then(function (response) {
         if (self.props.user) {
           if (response.data.email == self.props.user.email) {
             self.setState({ btnVisibility: false });
@@ -80,7 +83,7 @@ class Buy extends Component {
           });
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -183,8 +186,8 @@ class Buy extends Component {
                     </button>
                   </Link>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
             </div>
           </div>

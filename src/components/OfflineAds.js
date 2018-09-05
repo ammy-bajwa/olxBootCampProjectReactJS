@@ -30,7 +30,7 @@ class Kids extends Component {
     }
     componentDidMount() {
         let offlineAds = JSON.parse(localStorage.getItem('offlineAds'));
-        this.setState((prevState) => {
+        this.setState(() => {
             return {
                 offlineAds
             }
@@ -69,7 +69,7 @@ class Kids extends Component {
                                     RS {Obj.price}
                                   </p>
                                   <div className="container-fluid row h-100 justify-content-center align-items-center">
-                                    <Link to={{ pathname: `/${Obj.catogary}/${Obj.subCatogary}/ads/buy`, name: `${JSON.stringify(Obj)}`, state: { fromDashboard: true } }}>
+                                    <Link to={{ pathname: `/offlineads/details`, name: `${JSON.stringify(Obj)}`, state: { fromDashboard: true } }}>
                                       <button className="btn btn-outline-primary">
                                         Details
                                       </button>

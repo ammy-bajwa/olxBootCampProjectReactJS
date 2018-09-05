@@ -26,6 +26,7 @@ import Search from '../components/Search';
 import User from '../components/User';
 import Edit from '../components/Edit';
 import OfflineAds from '../components/OfflineAds';
+import OfflineAd from '../components/OfflineAd';
 import SendMessage from '../components/SendMessage';
 import Message from '../components/Message';
 
@@ -41,9 +42,10 @@ const AppRoute = () => {
           <PrivateRoute path="/user" component={User} exact={true} />
           <PrivateRoute path="/sendmessage" component={SendMessage} exact={true} />
           <PrivateRoute path="/message" component={Message} exact={true} />
+          <PrivateRoute path="/offlineads" component={OfflineAds} exact={true} />
+          <PrivateRoute path="/offlineads/details" component={OfflineAd} exact={true} />
           <Route path="/search" component={Search} exact={true} />
           <Route path="/property" component={Property} exact={true} />
-          <Route path="/offlineads" component={OfflineAds} exact={true} />
           <Route path="/rent" component={Rent} exact={true} />
           <Route path="/vehicles" component={Vehicles} exact={true} />
           <Route path="/bikes" component={Bikes} exact={true} />
