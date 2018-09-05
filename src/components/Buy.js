@@ -34,6 +34,11 @@ class Buy extends Component {
     });
   };
   offlineHandler = () => {
+    let self = this;
+    console.log(this.props.user);
+    if (!this.props.user) {
+      self.props.history.push('/login')
+    }
     if (this.props.user) {
       let adsArr = JSON.parse(localStorage.getItem("offlineAds"));
       let ad = this.state.ad;
@@ -48,10 +53,9 @@ class Buy extends Component {
       if (!copy) {
         adsArr.push(ad);
         localStorage.setItem("offlineAds", JSON.stringify(adsArr));
-        this.success();
+        return this.success();
       }
     }
-    this.props.history.push('/login')
   };
   getAdAuthor = email => {
     let self = this;
