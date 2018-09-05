@@ -36,6 +36,9 @@ class OfflineAd extends Component {
         return (
             <div className="container-fluid">
                 <Header history={this.props.history} />
+                <div>
+                    <ToastContainer />
+                </div>
                 <div className="mt-5">
                     <div className="container-fluid row h-100 justify-content-center align-items-center">
                         <img

@@ -35,7 +35,6 @@ class Buy extends Component {
   };
   offlineHandler = () => {
     let self = this;
-    console.log(this.props.user);
     if (!this.props.user) {
       self.props.history.push('/login')
     }
@@ -115,6 +114,9 @@ class Buy extends Component {
     return (
       <div className="container-fluid">
         <Header history={this.props.history} />
+        <div>
+                    <ToastContainer />
+                </div>
         <div className="mt-5">
           <div className="container-fluid row h-100 justify-content-center align-items-center">
             <img
