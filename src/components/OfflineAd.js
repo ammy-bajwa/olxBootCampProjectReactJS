@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "./Header";
 import { connect } from "react-redux";
 import LoadingScreen from "./LoadingScreen";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class OfflineAd extends Component {
     state = {
