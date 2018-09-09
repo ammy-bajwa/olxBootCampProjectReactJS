@@ -142,7 +142,7 @@ self.addEventListener("install", event => {
       .open(PRECACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
       .catch(err => console.log(err))
-      .then(self.skipWaiting())
+      .then(self.skipWaiting(), err => console.log(err))
   );
 });
 
@@ -173,61 +173,64 @@ self.addEventListener("activate", event => {
 // The fetch handler serves responses for same-origin resources from a cache.
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
-self.addEventListener("fetch", function (event) {
+self.addEventListener("fetch", function(event) {
   event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (navigator.onLine) {
+    caches
+      .match(event.request)
+      .then(function(response) {
+        if (navigator.onLine) {
+          return fetch(event.request) //fetch from internet
+            .then(function(res) {
+              return caches.open(PRECACHE).then(function(cache) {
+                cache.put(event.request.url, res.clone()); //save the response for future
+                return res; // return the fetched data
+              });
+            })
+            .catch(function(err) {
+              // fallback mechanism
+              return caches
+                .open("CACHE_CONTAINING_ERROR_MESSAGES")
+                .then(function(cache) {
+                  return cache.match("/index.html");
+                });
+            });
+        } else if (response) {
+          return response; // if valid response is found in cache return it
+        } else {
+          return fetch(event.request) //fetch from internet
+            .then(function(res) {
+              return caches.open(PRECACHE).then(function(cache) {
+                cache.put(event.request.url, res.clone()); //save the response for future
+                return res; // return the fetched data
+              });
+            })
+            .catch(function(err) {
+              // fallback mechanism
+              return caches
+                .open("CACHE_CONTAINING_ERROR_MESSAGES")
+                .then(function(cache) {
+                  return cache.match("/index.html");
+                });
+            });
+        }
+      })
+      .catch(function() {
         return fetch(event.request) //fetch from internet
-          .then(function (res) {
-            return caches.open(PRECACHE).then(function (cache) {
+          .then(function(res) {
+            return caches.open(PRECACHE).then(function(cache) {
               cache.put(event.request.url, res.clone()); //save the response for future
               return res; // return the fetched data
             });
           })
-          .catch(function (err) {
+          .catch(function(err) {
             // fallback mechanism
             return caches
               .open("CACHE_CONTAINING_ERROR_MESSAGES")
-              .then(function (cache) {
+              .then(function(cache) {
                 return cache.match("/index.html");
               });
           });
-      } else if (response) {
-        return response; // if valid response is found in cache return it
-      } else {
-        return fetch(event.request) //fetch from internet
-          .then(function (res) {
-            return caches.open(PRECACHE).then(function (cache) {
-              cache.put(event.request.url, res.clone()); //save the response for future
-              return res; // return the fetched data
-            });
-          })
-          .catch(function (err) {
-            // fallback mechanism
-            return caches
-              .open("CACHE_CONTAINING_ERROR_MESSAGES")
-              .then(function (cache) {
-                return cache.match("/index.html");
-              });
-          });
-      }
-    }).catch(function () {
-      return fetch(event.request) //fetch from internet
-        .then(function (res) {
-          return caches.open(PRECACHE).then(function (cache) {
-            cache.put(event.request.url, res.clone()); //save the response for future
-            return res; // return the fetched data
-          });
-        })
-        .catch(function (err) {
-          // fallback mechanism
-          return caches
-            .open("CACHE_CONTAINING_ERROR_MESSAGES")
-            .then(function (cache) {
-              return cache.match("/index.html");
-            });
-        });
-    })
+      })
   );
 });
 // Import and configure the Firebase SDK
@@ -250,7 +253,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function (payload) {
+messaging.setBackgroundMessageHandler(function(payload) {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
     payload

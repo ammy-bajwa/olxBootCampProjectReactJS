@@ -15,7 +15,7 @@ class Search extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <Header />
+        <Header history={this.props.history} />
         <div className="container-fluid row h-100 justify-content-center align-items-center center-block">
           {this.state.dataArray.length === 0
             ? "No Ad"

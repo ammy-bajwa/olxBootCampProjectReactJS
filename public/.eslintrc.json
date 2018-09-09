@@ -1,5 +1,8 @@
 {
-    "globals": {
-        "importScripts": true
-    }
+  "globals": {
+    "importScripts": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  }
 }

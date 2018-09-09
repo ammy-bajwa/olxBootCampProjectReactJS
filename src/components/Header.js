@@ -19,7 +19,7 @@ class Header extends Component {
 
   }
   errorServer = () => {
-    toast.error('Nothing Found', {
+    toast.error('Internel Error', {
       position: "top-left",
       autoClose: 3000,
       hideProgressBar: false,
@@ -67,7 +67,11 @@ class Header extends Component {
         if (response.data.message) {
           return self.error();
         }
+        localStorage.removeItem('searchResult');
         localStorage.setItem('searchResult', JSON.stringify(response.data));
+        if(window.location.pathname == '/search'){
+          return 
+        }
         self.props.history.push('/search');
       })
       .catch(function (error) {

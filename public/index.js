@@ -18,7 +18,7 @@ var messaging = firebase.messaging();
 messaging.onMessage(function(payload) {
   console.log("Message received. ", payload);
 });
-if ("serviceWorker" in navigator && location.protocol === 'https:') {
+if ("serviceWorker" in navigator) {
   window.addEventListener("load", function(event) {
     navigator.serviceWorker
       .register("service-worker.js")
