@@ -18,7 +18,7 @@ router.post("/send", (req, res) => {
 
       notification: {
         title: `Hi ${user.name}`,
-        body: "You Have A New Message"
+        body: "You Have A New Message From Your OLX Account"
       },
 
       data: {
