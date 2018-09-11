@@ -1,3 +1,4 @@
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -31,7 +32,7 @@ const Message = require('./routes/message');
 
 
 app.use(flash());
-
+app.use(sslRedirect());
 // mongoose.connect("mongodb://localhost:27017/olx-clone"); 
 mongoose.connect("mongodb://amir:123abc@ds137812.mlab.com:37812/olx-clone");
 
