@@ -28,6 +28,26 @@ if ("serviceWorker" in navigator) {
           "ServiceWorker registration successful with scope: ",
           registration.scope
         );
+        messaging.useServiceWorker(registration);
+      })
+      .then(function() {
+        // Requests user browser permission
+        return messaging.requestPermission();
+      })
+      .then(function() {
+        // Gets token
+        return messaging.getToken();
+      })
+      .then(function(token) {
+        // Simple ajax call to send user token to server for saving
+        localStorage.setItem("token", token);
+        console.log("index.js ", token);
+      })
+      .catch(function(err) {
+        console.log("ServiceWorker registration failed: ", err);
+      });
+  });
+}
         var deferredPrompt;
 
         window.addEventListener("beforeinstallprompt", function(e) {
@@ -58,23 +78,3 @@ if ("serviceWorker" in navigator) {
             deferredPrompt = null;
           });
         }
-        messaging.useServiceWorker(registration);
-      })
-      .then(function() {
-        // Requests user browser permission
-        return messaging.requestPermission();
-      })
-      .then(function() {
-        // Gets token
-        return messaging.getToken();
-      })
-      .then(function(token) {
-        // Simple ajax call to send user token to server for saving
-        localStorage.setItem("token", token);
-        console.log("index.js ", token);
-      })
-      .catch(function(err) {
-        console.log("ServiceWorker registration failed: ", err);
-      });
-  });
-}
